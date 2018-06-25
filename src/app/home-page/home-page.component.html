@@ -1,0 +1,36 @@
+<div class="child">
+
+  
+  <div class="container">
+    
+    <h2>Top 100 Cryptocurrencies By Market Capitalization</h2>
+    
+    <table *ngIf="coins">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Name</th>
+          <th>Price</th>
+          <th>Market cap</th>
+          <th>Volume</th>
+          <th>Change</th>
+          <th>Circulating supply</th>
+          <th>Options</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let coin of coins">
+          <td>{{coin.id}}</td>
+          <td>{{coin.name}}</td>
+          <td>{{coin.price}}$</td>
+          <td>{{coin.market_cap}}$</td>
+          <td>{{coin.volume}}$</td>
+          <td>{{coin.change}}%</td>
+          <td>{{coin.circulating_supply}}</td>
+          <td class="buy">Buy it</td>
+        </tr>
+      </tbody>
+    </table>
+    
+  </div>  
+</div> 

@@ -1,0 +1,64 @@
+h1{
+    color: #fff;
+    font-family: 'Kaushan Script', cursive;
+    font-size: 26px;
+    text-align: center;
+    display: inline;
+    line-height: 65px;
+    margin-left: 30px;
+    margin-right: 30px;
+    
+    img{
+        max-height: 24px;
+        vertical-align: middle;
+    }
+}
+
+
+ul{
+    display: inline;
+    margin: 0px;
+    padding: 0px;
+    float: right;
+
+    li{
+        color: #fff;
+        display: inline;
+        line-height: 65px;
+        font-size: 17px;
+        margin-right: 30px;
+        font-weight: 300;
+        cursor: pointer;
+
+        i.material-icons{
+            font-size: 20px;
+            vertical-align: middle;
+        }
+    }
+    li:hover{
+        color: #00cf70;
+    }
+    li:focus{
+        outline: none
+    }
+    .curPage{
+        color: #00cf70;
+        border-bottom: 1px solid #00cf70;
+    }
+    .cart{
+        background-color: #00cf70 !important;
+        color: #fff;
+        padding: 8px 20px;
+        border-radius: 6px;
+        font-weight: bold;
+        letter-spacing: 1px;
+    
+    }
+    .cart:hover{
+        background-color: #fff!important;
+        color: #00cf70;
+    }
+}
+
+
+
