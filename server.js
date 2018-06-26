@@ -20,7 +20,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
 // Point static path to dist
-app.use(express.static(path.join(__dirname, 'dist')));
+app.use(express.static(path.join(__dirname, 'dist/CryptoCurrencyWorld')));
 app.use(express.static(path.join(__dirname, 'node_modules')));
 
 
@@ -31,7 +31,7 @@ app.use('/coins', coinRoutes);
 
 // Catch all other routes and return the index file
 app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, 'dist/index.html'));
+  res.sendFile(path.join(__dirname, 'dist/CryptoCurrencyWorld/index.html'));
 });
 
 /**

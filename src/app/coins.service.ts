@@ -43,17 +43,19 @@ export class CoinsService {
   public coinsObservable:Observable<Coin[]>;
 
   // constructor(private http : HttpClient) {
-  constructor() {
+  constructor(private http : HttpClient) {
     this.coinsObservable = this.coinsSubject.asObservable(); // connect the Observable to Subject
     this.coinObservable = this.coinSubject.asObservable(); // connect the Observable to Subject
   }
   get(): void {
-    // this.http.get<Coin[]>("api").subscribe((data)=>{
-    //   this.coins = data;
-    //   this.coinsSubject.next(this.coins); //update the observable
-    // });
-    this.coins = this.coins2;
-    this.coinsSubject.next(this.coins); //update the observable
+    this.http.get<Coin[]>("/coins").subscribe((data)=>{
+      console.log(data);
+      
+      this.coins = data;
+      this.coinsSubject.next(this.coins); //update the observable
+    });
+    // this.coins = this.coins2;
+    // this.coinsSubject.next(this.coins); //update the observable
   }
 
   getCoin(id : number){

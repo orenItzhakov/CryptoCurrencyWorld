@@ -9,6 +9,7 @@ import { MyPortfolioComponent } from './my-portfolio/my-portfolio.component';
 import { CoinsService } from './coins.service';
 import { CoinDetailsComponent } from './coin-details/coin-details.component';
 import { FormsModule } from '@angular/forms';
+import { UserService } from './user.service';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,7 @@ import { FormsModule } from '@angular/forms';
     AppRoutingModule,
     FormsModule
   ],
-  providers: [CoinsService],
+  providers: [CoinsService,UserService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
