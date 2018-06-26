@@ -5,7 +5,9 @@ const boughtCoinSchema = mongoose.Schema({
     name : String,
     amount: Number,
     currentPrice: Number,
-    Date: Date
+    Date: Date,
+    isActive: Boolean,
+    userID: mongoose.Schema.Types.ObjectId
 });
 
 module.exports = mongoose.model('BoughtCoin', boughtCoinSchema);

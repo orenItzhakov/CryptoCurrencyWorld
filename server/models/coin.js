@@ -3,6 +3,7 @@ const mongoose = require('mongoose');
 const coinSchema = mongoose.Schema({
     _id : Number,
     name : String,
+    shortName : String,
     price: Number,
     market_cap: Number,
     volume : Number,

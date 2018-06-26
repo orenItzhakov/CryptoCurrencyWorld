@@ -1,27 +1,29 @@
 const express = require('express')
 const router = express.Router()
 const User = require('./server/models/user');
-const Transaction = require('./server/models/boughCoin');
+const Transaction = require('./server/models/boughtCoin');
 const Coin = require('./server/models/coin');
 const mongoose = require('mongoose');
+const request = require('request');
 
-mongoose.connect('mongodb://localhost/CoinsDB');
+mongoose.connect('mongodb://CCW:Aiagm100p@ds219181.mlab.com:19181/crypto_currency_world');
 
-User.findOne({firstName : 'Amir'}).exec()
-.then(data =>  {
-    data.coins.push(trans2);
-    data.save();
-})
+let db = mongoose.connection;
+
+db.on('error', console.error.bind(console, 'connection error:'));
+
+
+
 
 // Coin.find().exec()
 //     .then(coins => {
 //         setInterval(function () {
-//             for (var i = 0; i < coins.length; i++) {
+//             for (var i = 0; i < 10; i++) {
 //                 coins[i].price += (Math.random() * 0.4 - 0.2) * coins[i].price;
 //                 coins[i].save();
 //                 console.log(coins[i].name + ' new price: ' + coins[i].price);
 //             }
-//         }, 3000);
+//         }, 5000);
 //     })
 
 
@@ -40,20 +42,20 @@ User.findOne({firstName : 'Amir'}).exec()
 //     console.log(data)
 // })
 
-// Coin.create({
-//     _id: 2222,
-//     name: 'Ethereum',
-//     price: 440,
-//     market_cap: 11500000,
-//     volume: 300000,
-//     change: -2,
-//     circulating_supply : 117000000
-// },  function(err, data) {
-//     if (err) {
-//         return console.error(err)
-//     }
-//     console.log(data)
-// })
+Coin.create({
+    _id: 2222,
+    name: 'Ethereum',
+    price: 440,
+    market_cap: 11500000,
+    volume: 300000,
+    change: -2,
+    circulating_supply : 117000000
+},  function(err, data) {
+    if (err) {
+        return console.error(err)
+    }
+    console.log(data)
+})
 
 // Coin.create({
 //     _id: 3333,
