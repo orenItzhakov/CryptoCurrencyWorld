@@ -30,7 +30,7 @@ ul{
         font-weight: 300;
         cursor: pointer;
         position: relative;
-
+        transition: opacity .2s ease-out,color .2s ease-out;
         i.material-icons{
             font-size: 20px;
             vertical-align: middle;

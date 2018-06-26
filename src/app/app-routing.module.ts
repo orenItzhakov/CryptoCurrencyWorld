@@ -7,7 +7,7 @@ import { CoinDetailsComponent } from './coin-details/coin-details.component';
  
 const routes: Routes = [
   { path: '', component: HomePageComponent},
-  { path: 'coin-details/:id', component: CoinDetailsComponent},
+  { path: 'coin-details/:shortName', component: CoinDetailsComponent},
   { path: 'myPortfolio', component: MyPortfolioComponent}
 ];
 

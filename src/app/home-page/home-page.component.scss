@@ -13,6 +13,9 @@ table{
     th, td {
         padding: 10px;
     }
+    td {
+        font-weight: 300;
+    }
     thead{
         background-color: #fff;
         color: #000;
@@ -21,15 +24,21 @@ table{
             border-color: #000;
         }
     }
+    tbody{
+        background: hsla(0,0%,100%,.05)!important;
+    }
     .buy{
-        font-weight: bold;
         cursor: pointer;
-        font-weight: 300;
-        letter-spacing: 1px;
+        color: #0cef87;
+        letter-spacing: 1px;   
+        font-weight: 400!important; 
+        i{
+            vertical-align: middle;
+            font-size: 20px;
+        }
     }
     .buy:hover{
-        text-decoration: underline;
-        color: #00cf70;
+        color: #Fff;
     }
 }
 

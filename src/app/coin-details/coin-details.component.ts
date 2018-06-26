@@ -23,7 +23,7 @@ export class CoinDetailsComponent implements OnInit {
         this.coin = data;
         if( !this.valueUSD ) this.valueUSD = this.coin.price;
       });
-      this.coinsService.getCoin(params.id);
+      this.coinsService.getCoin(params.shortName);
     });
   }
 

@@ -10,6 +10,7 @@ import { CoinsService } from './coins.service';
 import { CoinDetailsComponent } from './coin-details/coin-details.component';
 import { FormsModule } from '@angular/forms';
 import { UserService } from './user.service';
+import { HttpClientModule } from '@angular/common/http'; 
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import { UserService } from './user.service';
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     AppRoutingModule,
     FormsModule
   ],

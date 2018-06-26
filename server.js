@@ -13,7 +13,7 @@ const coinRoutes = require('./server/routes/coinApi');
 
 const app = express();
 
-mongoose.connect('mongodb://localhost/CoinsDB');
+mongoose.connect('mongodb://CCW:Aiagm100p@ds219181.mlab.com:19181/crypto_currency_world');
 
 // Parsers for POST data
 app.use(bodyParser.json());

@@ -18,15 +18,15 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let coin of coins">
-          <td>{{coin.id}}</td>
+        <tr *ngFor="let coin of coins ; let idx=index">
+          <td>{{idx}}</td>
           <td>{{coin.name}}</td>
           <td>{{coin.price}}$</td>
           <td>{{coin.market_cap}}$</td>
           <td>{{coin.volume}}$</td>
           <td>{{coin.change}}%</td>
           <td>{{coin.circulating_supply}}</td>
-          <td class="buy" routerLink="coin-details/{{coin.id}}">Buy it</td>
+          <td class="buy" routerLink="coin-details/{{coin.shortName}}">Buy<i class="material-icons"> keyboard_arrow_right </i></td>
         </tr>
       </tbody>
     </table>
