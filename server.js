@@ -8,7 +8,7 @@ const mongoose = require('mongoose');
 
 // Get our API routes
 const userRoutes = require('./server/routes/userApi');
-// const companiesRoutes = require('./server/routes/companiesApi');
+const coinRoutes = require('./server/routes/coinApi');
 // const commentsRoutes = require('./server/routes/commentsApi');
 
 const app = express();
@@ -26,7 +26,7 @@ app.use(express.static(path.join(__dirname, 'node_modules')));
 
 // Set our api routes
 app.use('/user', userRoutes);
-// app.use('/companies', companiesRoutes);
+app.use('/coins', coinRoutes);
 // app.use('/comments', commentsRoutes);
 
 // Catch all other routes and return the index file
