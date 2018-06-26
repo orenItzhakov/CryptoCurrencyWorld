@@ -1,0 +1,56 @@
+$width: 94%;
+// $width: 800px;
+.coin{
+
+    h2{
+        color: #fff;
+        font-size: 21px;
+        text-align: center;
+        margin: 37px 0px;
+        font-style: italic;
+    }
+
+    .chart{
+        width: $width;
+        height: 370px;
+        margin: 0 auto;
+        line-height: 370px;
+        border: 2px dashed #00cf70;
+        text-align: center;
+        font-size: 130px;
+        color: #fff;
+        cursor: pointer;
+        transition: 0.2s;
+    }
+    .chart:hover{
+        box-shadow:0 0 13px 1px #00cf70;
+    }
+    .change{
+        width: $width;
+        height: 370px;
+        margin: 20px auto;
+        .input-group-btn button{
+            width: 95px;
+            margin-left: 2px;
+            border-radius: 0;
+        }
+        .input-group-btn:first-of-type{
+            margin-right: 18px;
+        }
+        input::-webkit-outer-spin-button,input::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+        .buy{
+            background-color: #00cf70 !important;
+            color: #fff;
+            height: 38px;
+            border-radius: 0;
+            margin-left: 25px;
+            width: 99px;
+        }
+        .buy:hover{
+            background-color: #0eda7c!important;
+        }
+    }
+}

@@ -1,4 +1,3 @@
-<div class="child">
 
   
   <div class="container">
@@ -27,10 +26,9 @@
           <td>{{coin.volume}}$</td>
           <td>{{coin.change}}%</td>
           <td>{{coin.circulating_supply}}</td>
-          <td class="buy">Buy it</td>
+          <td class="buy" routerLink="coin-details/{{coin.id}}">Buy it</td>
         </tr>
       </tbody>
     </table>
     
   </div>  
-</div> 

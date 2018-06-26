@@ -10,3 +10,11 @@ body{
     background-size: cover;
     font-family: 'Roboto', sans-serif;
 }
+
+*,*::before,*::after{
+    outline: none;
+    -webkit-user-select: none;  
+    -moz-user-select: none;    
+    -ms-user-select: none;      
+    user-select: none;
+}

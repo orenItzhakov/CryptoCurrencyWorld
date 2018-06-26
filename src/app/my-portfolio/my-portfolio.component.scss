@@ -1,0 +1,65 @@
+$width: 94%;
+.user{
+    width: $width;
+    color: #fff;
+    .name{
+        font-size: 66px;
+        margin: 0px;
+        margin-top: 50px;
+        font-weight: 100;
+        text-align: center;
+        line-height: 74px;
+    }
+    .details{
+        text-align: center;
+        margin: 0px;
+        font-size: 22px;
+        font-weight: 100;
+        span{
+            color: #00cf70;
+            font-weight: 300;
+        }
+    }
+    table, th, td {
+        border: 1px solid #FFF;
+        border-collapse: collapse;
+        text-align: center;
+    }
+    .my_coins,.old_coins{
+        width: 94%;
+        margin: 20px auto;
+        table{
+            width: 100%;
+            th, td {
+                padding: 10px;
+            }
+            thead{
+                background-color: #fff;
+                color: #000;
+                th{
+                    border-color: #000;
+                }
+                th:nth-child(2){
+                    width: 150px;
+                }
+            }
+            .sell{
+                font-weight: bold;
+                cursor: pointer;
+                font-weight: 300;
+                letter-spacing: 1px;
+            }
+            .sell:hover{
+                text-decoration: underline;
+                color: #00cf70;
+            }
+        }
+    }
+    .old_coins{
+        p{
+            margin-top: 40px;
+            font-size: 30px;
+            font-weight: 300;
+        }
+    }
+}

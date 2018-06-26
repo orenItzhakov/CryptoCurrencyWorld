@@ -1,52 +1,46 @@
-.child{
-    width: 100%;
-    height: 100%;
-    overflow-y: scroll;
-    padding-right: 17px; /* Increase/decrease this value for cross-browser compatibility */
-    box-sizing: content-box; /* So the width will be 100% + 17px */
 
-    h2{
-        color: #fff;
-        font-size: 21px;
-        text-align: center;
-        margin: 37px 0px;
-        font-style: italic;
+h2{
+    color: #fff;
+    font-size: 21px;
+    text-align: center;
+    margin: 37px 0px;
+    font-style: italic;
+}
+table{
+    width: 94%;
+    margin: 20px auto 40px;
+    color: #fff;
+    th, td {
+        padding: 10px;
     }
-    table{
-        width: 94%;
-        margin: 20px auto 40px;
-        color: #fff;
-        th, td {
-            padding: 10px;
-        }
-        thead{
-            background-color: #fff;
-            color: #000;
-        
-            th{
-                border-color: #000;
-            }
-        }
-        tbody{}
-
-        .buy{
-            font-weight: bold;
-            cursor: pointer;
-        }
-        .buy:hover{
-            text-decoration: underline;
-            color: #00cf70;
-        }
-    }
+    thead{
+        background-color: #fff;
+        color: #000;
     
-    table, th, td {
-        border: 1px solid #FFF;
-        border-collapse: collapse;
-        text-align: center;
+        th{
+            border-color: #000;
+        }
+    }
+    .buy{
+        font-weight: bold;
+        cursor: pointer;
+        font-weight: 300;
+        letter-spacing: 1px;
+    }
+    .buy:hover{
+        text-decoration: underline;
+        color: #00cf70;
     }
 }
 
-    
+table, th, td {
+    border: 1px solid #FFF;
+    border-collapse: collapse;
+    text-align: center;
+}
+
+
+
 
 
 

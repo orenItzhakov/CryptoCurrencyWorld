@@ -6,4 +6,5 @@ export class Coin {
     volume : number;
     change: number;
     circulating_supply: number;
+    shortName : string;
 }

@@ -7,6 +7,7 @@ h1{
     line-height: 65px;
     margin-left: 30px;
     margin-right: 30px;
+    cursor: pointer;
     
     img{
         max-height: 24px;
@@ -16,7 +17,6 @@ h1{
 
 
 ul{
-    display: inline;
     margin: 0px;
     padding: 0px;
     float: right;
@@ -29,6 +29,7 @@ ul{
         margin-right: 30px;
         font-weight: 300;
         cursor: pointer;
+        position: relative;
 
         i.material-icons{
             font-size: 20px;
@@ -38,9 +39,6 @@ ul{
     li:hover{
         color: #00cf70;
     }
-    li:focus{
-        outline: none
-    }
     .curPage{
         color: #00cf70;
         border-bottom: 1px solid #00cf70;
@@ -49,14 +47,43 @@ ul{
         background-color: #00cf70 !important;
         color: #fff;
         padding: 8px 20px;
-        border-radius: 6px;
-        font-weight: bold;
-        letter-spacing: 1px;
-    
+        // border-radius: 6px;
+    }
+    .cart::after{
+        // position: absolute;
+        // top: -3px;
+        // right: -9px;
+        // z-index: 1;
+        // width: 26px;
+        // height: 25.5px;
+        // content: "";
+        // background: inherit;
+        // border: inherit;
+        // border-bottom-color: transparent;
+        // border-left-color: transparent;
+        // border-radius: 0 3px 0 0;
+        // -webkit-transform: rotate(45deg);
+        // transform: rotate(45deg);
     }
     .cart:hover{
-        background-color: #fff!important;
-        color: #00cf70;
+        background-color: #0eda7c!important;
+        color: #fff;
+    }
+    .open {
+        border: 2px solid #00cf70;
+        background-color: #fff;
+        color: #0f1f2c;
+        padding: 18px;
+        position: absolute;
+        right: 0px;
+        width: 260px;
+        bottom: -120px;
+        border-radius: 8px;
+        p {
+            margin: 0px;
+            padding: 0px;
+            line-height: 30px;
+        }
     }
 }
 

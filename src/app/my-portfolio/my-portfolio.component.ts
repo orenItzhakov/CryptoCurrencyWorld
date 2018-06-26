@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { UserService } from '../user.service';
+import { User } from '../user';
+import { BoughtCoin } from '../boughtCoin';
 
 @Component({
   selector: 'app-my-portfolio',
@@ -6,10 +9,33 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./my-portfolio.component.scss']
 })
 export class MyPortfolioComponent implements OnInit {
-
-  constructor() { }
+  user:User;
+  constructor(private userService : UserService) {
+    this.userService.userObservable.subscribe((data)=>{
+      this.user = data;
+    });
+  }
 
   ngOnInit() {
+    this.userService.get();
+  }
+
+  checkTable(){
+    for (let i = 0; i < this.user.coins.length; i++) {
+      if(this.user.coins[i].isActive) return false;
+    }
+    return true;
+  }
+
+  checkTable2(){
+    for (let i = 0; i < this.user.coins.length; i++) {
+      if(!this.user.coins[i].isActive) return false;
+    }
+    return true;
+  }
+
+  sell(id:number , coin :BoughtCoin){
+    this.userService.sellCoin(id,coin);
   }
 
 }
