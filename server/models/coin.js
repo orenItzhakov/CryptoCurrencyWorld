@@ -1,7 +1,6 @@
 const mongoose = require('mongoose');
 
 const coinSchema = mongoose.Schema({
-    _id : String,
     name : String,
     shortName : String,
     price: Number,
