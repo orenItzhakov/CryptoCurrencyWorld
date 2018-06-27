@@ -13,13 +13,15 @@ import { UserService } from './user.service';
 import { HttpClientModule } from '@angular/common/http';
 import {MatButtonModule, MatCheckboxModule,MatSnackBarModule} from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { GraphComponent } from './graph/graph.component';
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
     HomePageComponent,
     MyPortfolioComponent,
-    CoinDetailsComponent
+    CoinDetailsComponent,
+    GraphComponent
   ],
   imports: [
     BrowserModule,

@@ -5,13 +5,14 @@ const Transaction = require('./server/models/boughtCoin');
 const Coin = require('./server/models/coin');
 const mongoose = require('mongoose');
 const request = require('request');
+const coinHistory = require('./server/models/coinHistory');
 
 mongoose.connect('mongodb://CCW:Aiagm100p@ds219181.mlab.com:19181/crypto_currency_world');
 
 let db = mongoose.connection;
 
 db.on('error', console.error.bind(console, 'connection error:'));
-setInterval(function () {
+// setInterval(function () {
     request('http://coincap.io/front', function (error, response, body) {
         console.log('error:', error); // Print the error if one occurred
         console.log('statusCode:', response && response.statusCode); // Print the response status code if a response was received
@@ -34,4 +35,23 @@ setInterval(function () {
                 console.error(err);
             })
     })
-}, 5000);
+// }, 5000);
+
+
+    request('https://min-api.cryptocompare.com/data/histoday?fsym=BTC&tsym=USD&limit=100', function (error, response, body) {
+        console.log('error:', error); // Print the error if one occurred
+        console.log('statusCode:', response && response.statusCode); // Print the response status code if a response was received
+        let obj = JSON.parse(body)
+        coinHistory.find().exec()
+            .then(coinHistorys => {
+                obj.Data.forEach(element => {
+                    coinHistorys.price = element.close
+                    coinHistorys.date = element.time
+                });
+                    
+
+            })
+            .catch(err => {
+                console.error(err);
+            })
+    })

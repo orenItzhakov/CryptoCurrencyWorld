@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, Input, EventEmitter } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { CoinsService } from '../coins.service';
 import { Coin } from '../coin';
@@ -22,6 +22,7 @@ export class CoinDetailsComponent implements OnInit {
     this.route.params.subscribe(params => {
       this.coinsService.coinObservable.subscribe((data)=>{
         this.coin = data;
+        
         if( !this.valueUSD ) this.valueUSD = this.coin.price;
       });
 
@@ -35,6 +36,9 @@ export class CoinDetailsComponent implements OnInit {
         console.log("Get coins");
        }, 5000);
     });
+
+    
+
   }
 
   toCoin(){
