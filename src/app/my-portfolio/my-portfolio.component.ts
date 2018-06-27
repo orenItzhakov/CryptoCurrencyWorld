@@ -11,12 +11,13 @@ import { BoughtCoin } from '../boughtCoin';
 export class MyPortfolioComponent implements OnInit {
   user:User;
   constructor(private userService : UserService) {
-    this.userService.userObservable.subscribe((data)=>{
-      this.user = data;
-    });
+    
   }
 
   ngOnInit() {
+    this.userService.userObservable.subscribe((data)=>{
+      this.user = data;
+    });
     this.userService.get();
   }
 

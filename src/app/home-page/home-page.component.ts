@@ -18,6 +18,10 @@ export class HomePageComponent implements OnInit {
 
   ngOnInit() {
     this.coinsService.get();
+    setInterval(()=>{ 
+      this.coinsService.get();
+      console.log("Get coins");
+     }, 5000);
   }
 
 }

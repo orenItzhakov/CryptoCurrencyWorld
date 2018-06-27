@@ -6,7 +6,7 @@ const Coin = require('../models/coin');
 const mongoose = require('mongoose');
 
 router.get('/myPortfolio', (req, res) => {
-    User.find().exec()
+    User.find().populate('coins').exec()
         .then(data => {
             console.log(data);
             res.send(JSON.stringify(data));
@@ -16,30 +16,32 @@ router.get('/myPortfolio', (req, res) => {
 
 router.post('/buy', (req, res) => {
     let userID = req.body.id;
-    let coinID = req.body.coin;
+    let coinName = req.body.coin;
     let amount = req.body.amount;
     User.find({ _id: userID }).populate('coins').exec()
         .then(user => {
-            
-            Coin.find({ _id : coinID }).exec()
+            Coin.find({ name : coinName }).exec()
             .then(coin => {
                 //console.log(user);
-                //console.log(coin);
+                // console.log(coin);
                 let trans = new Transaction({
                     _id: new mongoose.Types.ObjectId(),
-                    name: coin[0].name,
+                    name: coinName,
                     amount: amount,
                     currentPrice: coin[0].price,
                     Date: new Date(),
                     user : userID,
                     isActive : true
                 });
-                // trans.save();
+                trans.save();
                 //console.log(trans);
                 user[0].coins.push(trans);
                 user[0].balance -= amount*coin[0].price;
                 user[0].save();
-                res.send(JSON.stringify(user));
+                User.find({ _id: userID }).populate('coins').exec()
+                .then(user => {
+                    res.send(JSON.stringify(user));
+                })
             })
         })
         .catch(err => console.log('not here'));

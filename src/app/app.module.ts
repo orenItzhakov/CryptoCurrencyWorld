@@ -10,8 +10,9 @@ import { CoinsService } from './coins.service';
 import { CoinDetailsComponent } from './coin-details/coin-details.component';
 import { FormsModule } from '@angular/forms';
 import { UserService } from './user.service';
-import { HttpClientModule } from '@angular/common/http'; 
-
+import { HttpClientModule } from '@angular/common/http';
+import {MatButtonModule, MatCheckboxModule,MatSnackBarModule} from '@angular/material';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 @NgModule({
   declarations: [
     AppComponent,
@@ -22,8 +23,12 @@ import { HttpClientModule } from '@angular/common/http';
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     HttpClientModule,
     AppRoutingModule,
+    MatButtonModule, 
+    MatCheckboxModule,
+    MatSnackBarModule,
     FormsModule
   ],
   providers: [CoinsService,UserService],

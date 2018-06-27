@@ -1,7 +1,7 @@
 import { BoughtCoin } from "./boughtCoin";
 
 export class User {
-    id : number;
+    _id : string;
     firstName : string;
     lastName : string;
     email: string;

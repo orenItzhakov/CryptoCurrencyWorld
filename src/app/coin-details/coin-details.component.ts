@@ -3,7 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { CoinsService } from '../coins.service';
 import { Coin } from '../coin';
 import { UserService } from '../user.service';
-import { BoughtCoin } from '../boughtCoin';
+import { MatSnackBar } from '@angular/material';
 
 @Component({
   selector: 'app-coin-details',
@@ -14,7 +14,8 @@ export class CoinDetailsComponent implements OnInit {
   coin : Coin;
   valueUSD : number;
   valueCoin : number = 1;
-  constructor( private route : ActivatedRoute , private coinsService : CoinsService, private userService : UserService) {
+  constructor( private route : ActivatedRoute , private coinsService : CoinsService, private userService : UserService,public snackBar: MatSnackBar) {
+    
   }
 
   ngOnInit() {
@@ -23,7 +24,16 @@ export class CoinDetailsComponent implements OnInit {
         this.coin = data;
         if( !this.valueUSD ) this.valueUSD = this.coin.price;
       });
-      this.coinsService.getCoin(params.shortName);
+
+      this.coinsService.coinsObservable.subscribe(()=>{
+        this.coinsService.getCoin(params.shortName);
+      });
+
+      this.coinsService.get();
+      setInterval(()=>{ 
+        this.coinsService.get();
+        console.log("Get coins");
+       }, 5000);
     });
   }
 
@@ -36,8 +46,15 @@ export class CoinDetailsComponent implements OnInit {
 
   buyCoin(){
     if(this.userService.user.balance >= this.valueUSD){
-      var newBougthCoin = {id : 9 ,amount: this.valueCoin, currentPrice: this.valueUSD,date : new Date(),isActive : true,name : this.coin.name};
-      this.userService.addCoin(newBougthCoin , this.valueUSD);
+      this.userService.addCoin(this.valueCoin , this.coin.name);
+      this.snackBar.open("Transaction Done !!", "OK", {
+        duration: 2000,
+      });
+    }
+    else{
+      this.snackBar.open("You don't have enough money !!", "OK", {
+        duration: 2000,
+      });
     }
   }
 }

@@ -7,8 +7,8 @@
         <li>
             <span class="cart" (click)="cartShow()"><i class="material-icons">shopping_cart</i> My Cart</span>
             <div class="open" *ngIf="show && user">
-                <p>Balance: $ {{user.balance}}</p>
-                <p>Crypto portfolio: $ {{calcCoins}}</p>
+                <p>Balance: ${{user.balance| number}}</p>
+                <p>Crypto portfolio: ${{calcCoins| number}}</p>
             </div>
         </li>
     </ul>

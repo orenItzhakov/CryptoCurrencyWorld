@@ -2,7 +2,7 @@
   <p class="name">{{user.firstName +" "+ user.lastName}}</p>
   <p class="details">
     <span>Email: </span>{{user.email}}&nbsp;&nbsp;&nbsp;
-    <span>Balance: </span>{{user.balance}}$
+    <span>Balance: </span>{{user.balance| number}}$
   </p>
   <div class="my_coins">
     <table>
@@ -17,12 +17,12 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let coin of user.coins ; let idx = index">
-          <td *ngIf="coin.isActive">{{coin.id}}</td>
+        <tr *ngFor="let coin of user.coins ; let idx = index;">
+          <td *ngIf="coin.isActive">{{idx}}</td>
           <td *ngIf="coin.isActive">{{coin.name}}</td>
-          <td *ngIf="coin.isActive">{{coin.amount}}</td>
-          <td *ngIf="coin.isActive">{{coin.currentPrice}}$</td>
-          <td *ngIf="coin.isActive">{{coin.date | date: 'medium'}}</td>
+          <td *ngIf="coin.isActive">{{coin.amount| number}}</td>
+          <td *ngIf="coin.isActive">{{coin.currentPrice| number}}$</td>
+          <td *ngIf="coin.isActive">{{coin.Date | date: 'medium'}}</td>
           <td class="sell" *ngIf="coin.isActive" (click)="sell(idx, coin)">Sell<i class="material-icons"> keyboard_arrow_down </i></td>
         </tr>
         <tr *ngIf="checkTable()">
@@ -45,12 +45,12 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let coin of user.coins">
-          <td *ngIf="!coin.isActive">{{coin.id}}</td>
+        <tr *ngFor="let coin of user.coins ; let idx = index">
+          <td *ngIf="!coin.isActive">{{idx}}</td>
           <td *ngIf="!coin.isActive">{{coin.name}}</td>
-          <td *ngIf="!coin.isActive">{{coin.amount}}</td>
-          <td *ngIf="!coin.isActive">{{coin.currentPrice}}$</td>
-          <td *ngIf="!coin.isActive">{{coin.date | date: 'medium'}}</td>
+          <td *ngIf="!coin.isActive">{{coin.amount| number}}</td>
+          <td *ngIf="!coin.isActive">{{coin.currentPrice| number}}$</td>
+          <td *ngIf="!coin.isActive">{{coin.Date | date: 'medium'}}</td>
           <td *ngIf="!coin.isActive">&nbsp;</td>
         </tr>
         <tr *ngIf="checkTable2()">
