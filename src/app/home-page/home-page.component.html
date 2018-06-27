@@ -7,7 +7,7 @@
     <table *ngIf="coins">
       <thead>
         <tr>
-          <th>ID</th>
+          <th></th>
           <th>Name</th>
           <th>Price</th>
           <th>Market cap</th>
@@ -19,16 +19,16 @@
       </thead>
       <tbody>
         <tr *ngFor="let coin of coins ; let idx=index">
-          <td>{{idx}}</td>
+          <td><span [ngClass]="checkImg(coin.name)">&nbsp;</span></td>
           <td>{{coin.name}}</td>
           <td>${{coin.price| number:'.2'}}</td>
           <td>${{coin.market_cap| number:'.2'}}</td>
           <td>${{coin.volume| number:'.2'}}</td>
-          <td>{{coin.change}}%</td>
+          <td [ngClass]="check(idx)">{{coin.change| number:'.4'}}%</td>
           <td>{{coin.circulating_supply| number}}</td>
-          <td class="buy" routerLink="coin-details/{{coin.shortName}}">Buy<i class="material-icons"> keyboard_arrow_right </i></td>
+          <td class="buy" routerLink="coin-details/{{coin.shortName}}">Buy</td>
         </tr>
-      </tbody>
+      </tbody> 
     </table>
     
   </div>  

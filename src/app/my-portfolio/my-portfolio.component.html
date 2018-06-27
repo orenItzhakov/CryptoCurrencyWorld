@@ -23,7 +23,7 @@
           <td *ngIf="coin.isActive">{{coin.amount| number}}</td>
           <td *ngIf="coin.isActive">{{coin.currentPrice| number}}$</td>
           <td *ngIf="coin.isActive">{{coin.Date | date: 'medium'}}</td>
-          <td class="sell" *ngIf="coin.isActive" (click)="sell(idx, coin)">Sell<i class="material-icons"> keyboard_arrow_down </i></td>
+          <td class="sell" *ngIf="coin.isActive" (click)="sell(coin._id)">Sell<i class="material-icons"> keyboard_arrow_down </i></td>
         </tr>
         <tr *ngIf="checkTable()">
             <td colspan="6">No coins</td>

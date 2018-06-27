@@ -32,10 +32,11 @@ export class UserService {
     });
   }
 
-  sellCoin(id:number , coin : BoughtCoin) {
-    this.user.balance += coin.currentPrice;
-    this.user.coins[id].isActive = false;
-    this.userSubject.next(this.user); //update the observable
+  sellCoin(id:string) {
+    this.http.post<User>('/user/sell',{user:this.user._id , coin:id }).subscribe(user => {
+      this.user = user[0];
+      this.userSubject.next(this.user); //update the observable
+    });
   }
 
 }

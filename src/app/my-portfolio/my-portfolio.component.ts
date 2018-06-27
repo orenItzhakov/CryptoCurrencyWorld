@@ -35,8 +35,8 @@ export class MyPortfolioComponent implements OnInit {
     return true;
   }
 
-  sell(id:number , coin :BoughtCoin){
-    this.userService.sellCoin(id,coin);
+  sell(id:string){
+    this.userService.sellCoin(id);
   }
 
 }

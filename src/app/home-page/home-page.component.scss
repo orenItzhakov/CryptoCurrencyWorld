@@ -26,16 +26,24 @@ table{
     }
     tbody{
         background: hsla(0,0%,100%,.05)!important;
+        i{
+            font-size: 20px;
+            vertical-align: middle;
+        }
+        .red{
+            color: red;
+            animation: 2.5s redColor ease-in ;
+        }
+        .green{
+            animation: 5s greenColor ease-in ;
+            color: #0cef87;
+        }
     }
     .buy{
         cursor: pointer;
         color: #0cef87;
         letter-spacing: 1px;   
-        font-weight: 400!important; 
-        i{
-            vertical-align: middle;
-            font-size: 20px;
-        }
+        font-weight: 400!important;
     }
     .buy:hover{
         color: #Fff;
@@ -48,9 +56,30 @@ table, th, td {
     text-align: center;
 }
 
+@keyframes greenColor {
+    from{
+        color: #0cef87;
+    }
+    50%{
+        color: #57dfa1;
+    }
+    to{
+        color: #0cef87;
+    }
+ }
 
 
-
+ @keyframes redColor {
+    from{
+        color: red;
+    }
+    50%{
+        color: #ff6b6b;
+    }
+    to{
+        color: red;
+    }
+ }
 
 
 
