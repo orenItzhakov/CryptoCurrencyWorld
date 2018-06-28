@@ -21,7 +21,7 @@ export class HomePageComponent implements OnInit {
     setInterval(()=>{ 
       this.coinsService.get();
       console.log("Get coins");
-     }, 5000);
+     }, 10000);
   }
 
   check(id){

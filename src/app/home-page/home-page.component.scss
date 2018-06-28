@@ -1,10 +1,10 @@
 
 h2{
-    color: #fff;
-    font-size: 21px;
+    font-size: 44px;
+    margin: 60px 0px 40px;
+    font-weight: 100;
     text-align: center;
-    margin: 37px 0px;
-    font-style: italic;
+    color: #fff;
 }
 table{
     width: 94%;
@@ -32,10 +32,8 @@ table{
         }
         .red{
             color: red;
-            animation: 2.5s redColor ease-in ;
         }
         .green{
-            animation: 5s greenColor ease-in ;
             color: #0cef87;
         }
     }
@@ -55,31 +53,5 @@ table, th, td {
     border-collapse: collapse;
     text-align: center;
 }
-
-@keyframes greenColor {
-    from{
-        color: #0cef87;
-    }
-    50%{
-        color: #57dfa1;
-    }
-    to{
-        color: #0cef87;
-    }
- }
-
-
- @keyframes redColor {
-    from{
-        color: red;
-    }
-    50%{
-        color: #ff6b6b;
-    }
-    to{
-        color: red;
-    }
- }
-
 
 

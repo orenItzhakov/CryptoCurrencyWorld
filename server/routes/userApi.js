@@ -56,10 +56,13 @@ router.post('/sell', (req, res) => {
             User.find({ _id: userID }).populate('coins').exec()
                 .then(user => {
                     user[0].balance += trans[0].amount * trans[0].currentPrice;
+                    trans[0].isActive = false;
+                    trans[0].save();
                     user[0].save();
-                    User.find({ _id: userID }).populate('coins').exec()
+                    User.find({ _id: userID }).populate('coins').exec().then(user => {
                         res.send(JSON.stringify(user));
-                        })
-                })
+                    });
+                });
         })
-    module.exports = router
+})
+module.exports = router
