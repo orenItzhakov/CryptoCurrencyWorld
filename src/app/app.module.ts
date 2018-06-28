@@ -14,6 +14,7 @@ import { HttpClientModule } from '@angular/common/http';
 import {MatButtonModule, MatCheckboxModule,MatSnackBarModule} from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { GraphComponent } from './graph/graph.component';
+import { GraphSmallComponent } from './graph-small/graph-small.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -21,7 +22,8 @@ import { GraphComponent } from './graph/graph.component';
     HomePageComponent,
     MyPortfolioComponent,
     CoinDetailsComponent,
-    GraphComponent
+    GraphComponent,
+    GraphSmallComponent
   ],
   imports: [
     BrowserModule,
