@@ -5,6 +5,7 @@ const Transaction = require('./server/models/boughtCoin');
 const Coin = require('./server/models/coin');
 const mongoose = require('mongoose');
 const request = require('request');
+const coinHistory = require('./server/models/coinHistory');
 
 mongoose.connect('mongodb://CCW:Aiagm100p@ds219181.mlab.com:19181/crypto_currency_world');
 
@@ -19,6 +20,7 @@ request('https://min-api.cryptocompare.com/data/pricemultifull?fsyms=BTC,ETH,XRP
     let objn = Object.values(obj);
     let objnw = Object.values(objn[0]);
     //console.log(objnw[0].USD);
+
         Coin.find().exec()
             .then(coins => {
                 for (var i = 0; i < coins.length; i++) {
@@ -45,5 +47,7 @@ request('https://min-api.cryptocompare.com/data/pricemultifull?fsyms=BTC,ETH,XRP
                     }
                 }
             })
+
 });
 }, 5000);
+
