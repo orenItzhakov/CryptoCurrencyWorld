@@ -1,12 +1,19 @@
 <div class="coin container" *ngIf="coin">
   <h2>{{coin.name}}</h2>
-  <div class="chart"><app-graph></app-graph></div>
+
+<p class="details">
+  <span>Current price: </span>${{coin.price| number:'.2'}}&nbsp;&nbsp;&nbsp;
+  <span>Circulating supply: </span>{{coin.circulating_supply| number}}<br>
+  <span>Market cap: </span>${{coin.market_cap| number:'.2'}}&nbsp;&nbsp;&nbsp;
+  <span>Change: </span>${{coin.change| number:'.2'}}
+</p>
+<div class="chart"><app-graph></app-graph></div>
 
   <div class="change">
       <div class="input-group input-group-currency">
         <input type="number" class="form-control" placeholder="Amount" (keyup)="toCoin()" [(ngModel)]="valueUSD" >
         <div class="input-group-btn">
-          <button class="btn">$USD</button>
+          <button class="btn">USD</button>
         </div>
         <input type="number" class="form-control" placeholder="Amount" value="1" (keyup)="toUSD()" [(ngModel)]="valueCoin" >
         <div class="input-group-btn">

@@ -1,10 +1,10 @@
 
 h2{
-    color: #fff;
-    font-size: 21px;
+    font-size: 44px;
+    margin: 60px 0px 40px;
+    font-weight: 100;
     text-align: center;
-    margin: 37px 0px;
-    font-style: italic;
+    color: #fff;
 }
 table{
     width: 94%;
@@ -26,16 +26,22 @@ table{
     }
     tbody{
         background: hsla(0,0%,100%,.05)!important;
+        i{
+            font-size: 20px;
+            vertical-align: middle;
+        }
+        .red{
+            color: red;
+        }
+        .green{
+            color: #0cef87;
+        }
     }
     .buy{
         cursor: pointer;
         color: #0cef87;
         letter-spacing: 1px;   
-        font-weight: 400!important; 
-        i{
-            vertical-align: middle;
-            font-size: 20px;
-        }
+        font-weight: 400!important;
     }
     .buy:hover{
         color: #Fff;
@@ -47,10 +53,5 @@ table, th, td {
     border-collapse: collapse;
     text-align: center;
 }
-
-
-
-
-
 
 

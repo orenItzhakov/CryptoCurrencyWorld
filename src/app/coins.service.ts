@@ -14,7 +14,8 @@ export class CoinsService {
   public coinObservable:Observable<Coin>;
 
   public coins: Array<Coin> = new Array<Coin>();
-
+  public coinsOld: Array<Coin> = new Array<Coin>();
+  public firstCopy = true;
   //set Observable & Subject to coins
   public coinsSubject : Subject<Coin[]> = new Subject<Coin[]>();
   public coinsObservable:Observable<Coin[]>;
@@ -25,9 +26,13 @@ export class CoinsService {
     this.coinObservable = this.coinSubject.asObservable(); // connect the Observable to Subject
   }
   get(): void {
+    if(!this.firstCopy) this.coinsOld = this.coins.slice();
     this.http.get<Coin[]>('/coins').subscribe((data)=>{
       this.coins = data;
       this.coinsSubject.next(this.coins); //update the observable
+
+      if(this.firstCopy) this.coinsOld = this.coins.slice();
+      this.firstCopy = false;
     });
   }
 

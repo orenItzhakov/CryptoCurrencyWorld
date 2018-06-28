@@ -1,15 +1,28 @@
 $width: 94%;
 // $width: 800px;
 .coin{
-
-    h2{
-        color: #fff;
-        font-size: 21px;
+    color: #fff;
+    h2{   
+        font-size: 44px;
+        margin: 50px 0px 0px;
+        font-weight: 100;
         text-align: center;
-        margin: 37px 0px;
-        font-style: italic;
+        span{
+            font-size: 28px;
+            font-weight: 300;
+        }
     }
-
+    .details{
+        text-align: center;
+        margin: 0px;
+        margin-bottom: 30px;
+        font-size: 22px;
+        font-weight: 100;
+        span{
+            color: #00cf70;
+            font-weight: 300;
+        }
+    }
     .chart{
         width: $width;
         height: 370px;

@@ -11,7 +11,8 @@
           <th>ID</th>
           <th>Name</th>
           <th>Amount</th>
-          <th>Current Price</th>
+          <th>Price when buying</th>
+          <th>Price now</th>
           <th>Date</th>
           <th>Options</th>
         </tr>
@@ -22,11 +23,12 @@
           <td *ngIf="coin.isActive">{{coin.name}}</td>
           <td *ngIf="coin.isActive">{{coin.amount| number}}</td>
           <td *ngIf="coin.isActive">{{coin.currentPrice| number}}$</td>
+          <td *ngIf="coin.isActive">{{priceNow(coin.name,coin.amount) | number}}$</td>
           <td *ngIf="coin.isActive">{{coin.Date | date: 'medium'}}</td>
-          <td class="sell" *ngIf="coin.isActive" (click)="sell(idx, coin)">Sell<i class="material-icons"> keyboard_arrow_down </i></td>
+          <td class="sell" *ngIf="coin.isActive" (click)="sell(coin._id)">Sell<i class="material-icons"> keyboard_arrow_down </i></td>
         </tr>
         <tr *ngIf="checkTable()">
-            <td colspan="6">No coins</td>
+            <td colspan="7">No coins</td>
           </tr>
       </tbody>
     </table>
@@ -39,7 +41,7 @@
           <th>ID</th>
           <th>Name</th>
           <th>Amount</th>
-          <th>Current Price</th>
+          <th>Price when selling</th>
           <th>Date</th>
           <th>Options</th>
         </tr>
