@@ -1,10 +1,10 @@
 import { BoughtCoin } from "./boughtCoin";
 
 export class User {
-    _id : string;
-    firstName : string;
-    lastName : string;
-    email: string;
-    balance: number;
-    coins : Array<BoughtCoin>;
+    public _id : string;
+    public firstName : string;
+    public lastName : string;
+    public email: string;
+    public balance: number = 5000;
+    public coins : Array<BoughtCoin> = [];
 }

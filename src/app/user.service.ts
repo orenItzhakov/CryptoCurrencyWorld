@@ -8,35 +8,49 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root'
 })
 export class UserService {
-  user : User;
+  user: User;
 
   //set Observable & Subject to coin
-  public userSubject : Subject<User> = new Subject<User>();
-  public userObservable:Observable<User>;
+  public userSubject: Subject<User> = new Subject<User>();
+  public userObservable: Observable<User>;
 
-  constructor(private http : HttpClient) {
+  constructor(private http: HttpClient) {
     this.userObservable = this.userSubject.asObservable(); // connect the Observable to Subject
   }
 
-  get(): void {
-    this.http.get<User>('/user/myPortfolio').subscribe(user => {
+  get(id: String): void {
+    this.http.get<User>('/user/myPortfolio/' + id).subscribe(user => {
       this.user = user[0];
       this.userSubject.next(this.user); //update the observable
     })
   }
 
-  addCoin(amount,name){
-    this.http.post<User>('/user/buy',{amount:amount , coin:name,id:this.user._id}).subscribe(user => {
+  addCoin(amount, name) {
+    this.http.post<User>('/user/buy', { amount: amount, coin: name, id: this.user._id }).subscribe(user => {
       this.user = user[0];
       this.userSubject.next(this.user); //update the observable
     });
   }
 
-  sellCoin(id:string) {
-    this.http.post<User>('/user/sell',{user:this.user._id , coin:id }).subscribe(user => {
+  sellCoin(id: string) {
+    this.http.post<User>('/user/sell', { user: this.user._id, coin: id }).subscribe(user => {
       this.user = user[0];
       this.userSubject.next(this.user); //update the observable
     });
   }
 
+  addUser(user, details) {
+    this.http.post<User>('/user/add', { newUser: user }).subscribe(user => {
+      if (user == 'email exists !!') {
+        alert('Email exists !!');
+      } else if (user == 'username exists !!') {
+        alert('User Name exists !!')
+      }
+      else {
+        this.http.post<User>('/user/addDetail', { userDetail: details, userID: user._id }).subscribe(user => {
+          alert('Welcome to the CryptoCurrenncy World, ' + user[0].firstName + ' !!');
+        })
+      }
+    })
+  }
 }

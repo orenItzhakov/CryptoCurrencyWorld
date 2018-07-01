@@ -1,11 +1,16 @@
 <div class="container">
-    <h1 routerLink="/"><img src="assets/coin2.png" alt=""> Crypto Currency World</h1>
+    <h1 routerLink="/">
+        <img src="assets/coin2.png" alt=""> Crypto Currency World</h1>
 
     <ul>
         <li routerLink="/" [ngClass]="{'curPage': router.url == '/'}">Home</li>
-        <li routerLink="/myPortfolio" [ngClass]="{'curPage': router.url == '/myPortfolio'}">My portfolio</li>
+        <li (click) = "goToProfile()">My portfolio</li>
+        <li (click) = "openLoginDialog()">Login</li>
+        <li (click) = "logout()">Logout</li>
+        <li (click) = "openSignUpDialog()">SignUp</li>
         <li>
-            <span class="cart" (click)="cartShow()"><i class="material-icons">shopping_cart</i> My Cart</span>
+            <span class="cart" (click)="cartShow()">
+                <i class="material-icons">shopping_cart</i> My Cart</span>
             <div class="open" *ngIf="show && user">
                 <p>Balance: ${{user.balance| number}}</p>
                 <p>Crypto portfolio: ${{calcCoins| number}}</p>

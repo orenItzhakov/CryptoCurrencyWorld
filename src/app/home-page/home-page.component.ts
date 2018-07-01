@@ -25,9 +25,8 @@ export class HomePageComponent implements OnInit {
   }
 
   check(id){
-    if(this.coins[id].change == this.coinsService.coinsOld[id].change) return "";
-    else if(this.coins[id].change > this.coinsService.coinsOld[id].change) return "green";
-    else return "red";
+    if(this.coins[id].change > 0) return "green";
+    else if (this.coins[id].change < 0) return "red";
   }
   
   checkImg(name){

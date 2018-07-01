@@ -5,11 +5,18 @@ const path = require('path');
 const http = require('http');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
+const passport = require('passport');
+var LocalStrategy = require('passport-local').Strategy;
+var jwt = require('jsonwebtoken');
+var expressJwt = require('express-jwt');
+let authenticate = expressJwt({ secret: 'thisIsTopSecret' });
+const Detail = require('./server/models/detail');
+const User = require('./server/models/user');
+const bcrypt = require('bcrypt');
 
-// Get our API routes
 const userRoutes = require('./server/routes/userApi');
 const coinRoutes = require('./server/routes/coinApi');
-// const commentsRoutes = require('./server/routes/commentsApi');
+
 
 const app = express();
 
@@ -18,6 +25,36 @@ mongoose.connect('mongodb://CCW:Aiagm100p@ds219181.mlab.com:19181/crypto_currenc
 // Parsers for POST data
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
+
+app.use(passport.initialize());
+
+passport.use(new LocalStrategy(
+  //    { passReqToCallback : true},
+  function (username, password, done) {
+    Detail.find().exec()
+      .then(details => {
+        for (var i = 0; i < details.length; i++) {
+          if (username === details[i].username) {
+            bcrypt.compare(password, details[i].password, (err, result) => {
+              if (result) {
+                return done(null, { userID: details[i].user_id });
+              } else {
+                return done(null, false);
+              }
+
+            })
+          }
+        }
+      })
+  }
+));
+
+app.post('/login', passport.authenticate('local', { session: false }),
+  (req, res) => {
+    let token = jwt.sign(req.user, 'thisIsTopSecret', { expiresIn: '7d' });
+    console.log(req.user)
+    res.send({ token, ID: req.user });
+  });
 
 // Point static path to dist
 app.use(express.static(path.join(__dirname, 'dist/CryptoCurrencyWorld')));

@@ -1,0 +1,28 @@
+<form class="example-form">
+  <h2 mat-dialog-title>CryptoCurrency World</h2>
+  <table class="example-full-width" cellspacing="0">
+    <tr>
+      <td>
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="First name" [(ngModel)]="data.firstName" name="firstName">
+        </mat-form-field>
+      </td>
+      <td>
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="Last Name" [(ngModel)]="data.lastName" name="lastName">
+        </mat-form-field>
+      </td>
+    </tr>
+  </table>
+  <mat-form-field class="example-full-width">
+    <input matInput placeholder="Email" [(ngModel)]="data.email" name="Email">
+  </mat-form-field>
+  <mat-form-field class="example-full-width">
+    <input matInput placeholder="User Name" [(ngModel)]="data.username" name="username">
+  </mat-form-field>
+  <mat-form-field class="example-full-width">
+    <input matInput type="password" placeholder="Password" [(ngModel)]="data.password" name="password">
+  </mat-form-field>
+  <button mat-raised-button (click)="onCloseNo()">Cancel</button>
+  <button mat-raised-button (click)="onCloseOk()">Sign up</button>
+</form>
