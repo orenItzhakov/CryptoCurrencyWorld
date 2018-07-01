@@ -41,15 +41,17 @@ export class UserService {
 
   addUser(user, details) {
     this.http.post<User>('/user/add', { newUser: user }).subscribe(user => {
-      if (user == 'email exists !!') {
-        alert('Email exists !!');
-      } else if (user == 'username exists !!') {
-        alert('User Name exists !!')
-      }
-      else {
+      if (user) {
         this.http.post<User>('/user/addDetail', { userDetail: details, userID: user._id }).subscribe(user => {
-          alert('Welcome to the CryptoCurrenncy World, ' + user[0].firstName + ' !!');
+          if (user) {
+            alert('Welcome to the CryptoCurrenncy World, ' + user[0].firstName + ' !!');
+          }
+          else {
+            alert('User Name exists !!')
+          }
         })
+      } else {
+        alert('Email exists !!')
       }
     })
   }

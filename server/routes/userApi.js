@@ -72,7 +72,9 @@ router.post('/add', (req, res) => {
             for (var i = 0; i < users.length; i++) {
                 if (users[i].email == newUser.email) {
                     flag = false;
-                    res.send('email exists !!')
+                    return res.status(409).json({
+                        message: 'username exists !!'
+                    });
                 }
             }
             if (flag) {
@@ -94,7 +96,6 @@ router.post('/addDetail', (req, res) => {
     var userDetail = req.body.userDetail;
     var ID = req.body.userID;
     let newUser = true;
-    let flag = false;
     Detail.find().exec()
         .then(allDetails => {
             for (var i = 0; i < allDetails.length; i++) {
@@ -108,11 +109,6 @@ router.post('/addDetail', (req, res) => {
                         message: 'username exists !!'
                     });
                 }
-            }
-            if (flag) {
-                User.deleteOne({ _id: ID }, function (err) {
-                    if (err) console.log(err);
-                })
             }
             if (newUser) {
                 bcrypt.hash(userDetail.password, 10, (err, hash) => {
