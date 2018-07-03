@@ -18,21 +18,21 @@ export class AuthService {
     this.userUpdate = this.userSubject.asObservable();
   }
 
-  login(usern, pass) {
-    let user = {
-      username: usern,
-      password: pass
-    }
-    this.http.post<any>('/login', user).subscribe((data) => {
-      if (JSON.parse(JSON.stringify(data)).ID.status) {
-        localStorage.setItem('user', JSON.stringify(data));
-        this.current_user = JSON.parse(localStorage.getItem('user')).ID.userID;
-        this.userSubject.next(JSON.parse(localStorage.getItem('user')))
-      }
-      else {
-        alert('User name or password is not correct')
-      }
-      this.router.navigate(['']);
-    });
-  }
+//   login(usern, pass) {
+//     let user = {
+//       username: usern,
+//       password: pass
+//     }
+//     this.http.post<any>('/login', user).subscribe((data) => {
+//       if (JSON.parse(JSON.stringify(data)).ID.status) {
+//         localStorage.setItem('user', JSON.stringify(data));
+//         this.current_user = JSON.parse(localStorage.getItem('user')).ID.userID;
+//         this.userSubject.next(JSON.parse(localStorage.getItem('user')))
+//       }
+//       else {
+//         alert('User name or password is not correct')
+//       }
+//       this.router.navigate(['']);
+//     });
+//   }
 }

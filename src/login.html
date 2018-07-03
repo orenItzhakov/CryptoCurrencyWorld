@@ -252,40 +252,40 @@
         <div class="loginbox-body">
           <label class="form-input">
             <i class="material-icons">create</i>
-            <input type="text" required matInput [(ngModel)]="data.firstName" name="firstName" />
+            <input type="text" required class="firstName" />
             <span class="label">First name</span>
             <span class="underline"></span>
           </label>
 
           <label class="form-input">
             <i class="material-icons">create</i>
-            <input type="text" required matInput [(ngModel)]="data.lastName" name="lastName" />
+            <input type="text" required  class="lastName" />
             <span class="label">Last name</span>
             <span class="underline"></span>
           </label>
 
           <label class="form-input">
             <i class="material-icons">create</i>
-            <input type="text" required matInput [(ngModel)]="data.username" name="username" />
+            <input type="text" required  class="newUsername" />
             <span class="label">Username</span>
             <span class="underline"></span>
           </label>
 
           <label class="form-input">
             <i class="material-icons">create</i>
-            <input type="text" required matInput [(ngModel)]="data.email" name="Email" />
+            <input type="text" required  class="Email" />
             <span class="label">Email</span>
             <span class="underline"></span>
           </label>
 
           <label class="form-input">
             <i class="material-icons">create</i>
-            <input type="password" required matInput [(ngModel)]="data.password" name="password" />
+            <input type="password" required class="newPassword" />
             <span class="label">Password</span>
             <div class="underline"></div>
           </label>
 
-          <button class="btn" mat-raised-button (click)="onCloseOk()">REGISTER</button>
+          <button class="onCloseOk" mat-raised-button>REGISTER</button>
         </div>
       </div>
     </div>
@@ -310,13 +310,63 @@
             username: username,
             password: password
           },
-          function (data, status) {
+          function (data) {
             if (data.ID.status) {
               localStorage.setItem("user", JSON.stringify(data));
               window.location = "/";
             }
             else {
-              alert("worng username or password");
+              alert('User name or password is not correct')
+            }
+
+          });
+      });
+      $(".onCloseOk").click(function () {
+        var username = $(".newUsername").val();
+        var password = $(".newPassword").val();
+        var email = $(".Email").val();
+        var firstName = $(".firstName").val();
+        var lastName = $(".lastName").val();
+        var user = {
+          firstName: firstName,
+          lastName: lastName,
+          email: email
+        }
+        var details = {
+          username: username,
+          password: password
+        }
+        console.log('here'+user);
+        $.post("/user/add",
+          user,
+          function (data) {
+            console.log(data);
+            if (data.status) {
+              details.ID = data.user._id;
+              console.log('now here:' + details.ID);
+              $.post("/user/addDetail",
+                  details, function (result) {
+                  console.log('here we are : ' + result);
+                  if (result.status) {
+                    alert('Welcome to the CryptoCurrenncy World, ' + result.user[0].firstName + ' !!');
+                    $.post("/login",
+                      {
+                        username: username,
+                        password: password
+                      },
+                      function (data) {
+                        if (data.ID.status) {
+                          localStorage.setItem("user", JSON.stringify(data));
+                          window.location = "/";
+                        }
+                      });
+                  } else {
+                    alert('User Name exists !!')
+                  }
+                })
+            }
+            else {
+              alert('Email exists !!')
             }
 
           });

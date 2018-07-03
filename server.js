@@ -51,7 +51,7 @@ passport.use(new LocalStrategy(
 ));
 
 app.post('/login', passport.authenticate('local', { session: false }), (req, res) => {
-  let token = jwt.sign(req.user, 'thisIsTopSecret', { expiresIn: '7d' });
+  let token = jwt.sign(req.user, 'thisIsTopSecret');
   res.send({ token, ID: req.user });
   //res.sendFile(path.join(__dirname, '/dist/CryptoCurrencyWorld/index.html?token='+token+'&ID='+req.user));
 });
@@ -67,11 +67,12 @@ app.use('/coins', coinRoutes);
 // app.use('/comments', commentsRoutes);
 
 // Catch all other routes and return the index file
-app.get('/login', (req, res) => {
+
+app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, 'src/login.html'));
 });
 
-app.get('*', (req, res) => {
+app.get('/login', (req, res) => {
   res.sendFile(path.join(__dirname, 'src/login.html'));
 });
 

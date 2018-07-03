@@ -25,6 +25,7 @@ export class HeaderComponent implements OnInit {
   constructor(private authService: AuthService, private router: Router, private userService: UserService, public dialog: MatDialog) { }
 
   ngOnInit() {
+    this.currentUserID = JSON.parse(localStorage.getItem('user')).ID.userID;
   }
 
   cartShow() {
@@ -58,61 +59,61 @@ export class HeaderComponent implements OnInit {
     }
   }
 
-  openLoginDialog(): void {
-    let dialogRef = this.dialog.open(LoginComponent, {
-      width: '400px',
-      height: '600px'
-    });
-    dialogRef.afterClosed().subscribe(result => {
-      if (result == undefined) {
-        console.log('no entry!!')
-      }
-      else {
-        this.authService.login(result.username, result.password);
-        this.authService.userUpdate.subscribe(check => {
-          if (check) {
-            this.currentUserID = JSON.parse(localStorage.getItem('user')).ID.userID;
-            this.userService.get(this.currentUserID);
-            this.userService.userObservable.subscribe((data) => {
-              this.banMessage = false;
-              this.loginMessage = true;
-              this.user = data;
-              this.calcAllCoins();
-            })
-          } else {
+  // openLoginDialog(): void {
+  //   let dialogRef = this.dialog.open(LoginComponent, {
+  //     width: '400px',
+  //     height: '600px'
+  //   });
+  //   dialogRef.afterClosed().subscribe(result => {
+  //     if (result == undefined) {
+  //       console.log('no entry!!')
+  //     }
+  //     else {
+  //       this.authService.login(result.username, result.password);
+  //       this.authService.userUpdate.subscribe(check => {
+  //         if (check) {
+  //           this.currentUserID = JSON.parse(localStorage.getItem('user')).ID.userID;
+  //           this.userService.get(this.currentUserID);
+  //           this.userService.userObservable.subscribe((data) => {
+  //             this.banMessage = false;
+  //             this.loginMessage = true;
+  //             this.user = data;
+  //             this.calcAllCoins();
+  //           })
+  //         } else {
 
-          }
-        })
-      }
-    });
+  //         }
+  //       })
+  //     }
+  //   });
 
-  }
+  // }
 
-  openSignUpDialog(): void {
-    let dialogRef = this.dialog.open(SignupComponent, {
-      width: '400px',
-      height: '500px',
-      data: {}
-    });
-    dialogRef.afterClosed().subscribe(result => {
-      if (result == undefined) {
-        console.log('no entry!!')
-      }
-      else {
-        this.userService.addUser(result.newUser, result.details);
-        if (this.currentUserID) {
-          this.currentUserID = this.userService.user._id;
-          this.userService.get(this.currentUserID);
-          this.userService.userObservable.subscribe((data) => {
-            this.welcomeMessage = true;
-            this.user = data;
-            this.calcAllCoins();
-          })
-        }
-      }
-    });
+  // openSignUpDialog(): void {
+  //   let dialogRef = this.dialog.open(SignupComponent, {
+  //     width: '400px',
+  //     height: '500px',
+  //     data: {}
+  //   });
+  //   dialogRef.afterClosed().subscribe(result => {
+  //     if (result == undefined) {
+  //       console.log('no entry!!')
+  //     }
+  //     else {
+  //       this.userService.addUser(result.newUser, result.details);
+  //       if (this.currentUserID) {
+  //         this.currentUserID = this.userService.user._id;
+  //         this.userService.get(this.currentUserID);
+  //         this.userService.userObservable.subscribe((data) => {
+  //           this.welcomeMessage = true;
+  //           this.user = data;
+  //           this.calcAllCoins();
+  //         })
+  //       }
+  //     }
+  //   });
 
-  }
+  // }
 
   goToProfile() {
 
