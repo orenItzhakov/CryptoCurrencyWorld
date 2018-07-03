@@ -22,6 +22,7 @@ export class HomePageComponent implements OnInit {
 
   ngOnInit() {
     this.coinsService.get();
+    
     this.myInterval = setInterval(()=>{ 
       this.coinsService.get();
       if(this.flag) clearInterval(this.myInterval);
@@ -66,5 +67,8 @@ export class HomePageComponent implements OnInit {
       return -1;
     return 0;
   }
+
+  
+
   
 }

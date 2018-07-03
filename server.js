@@ -15,6 +15,7 @@ const User = require('./server/models/user');
 const bcrypt = require('bcrypt');
 const userRoutes = require('./server/routes/userApi');
 const coinRoutes = require('./server/routes/coinApi');
+const coinHistoryRoutes = require('./server/routes/coinHistoryApi');
 
 
 const app = express();
@@ -64,6 +65,7 @@ app.use(express.static(path.join(__dirname, 'node_modules')));
 // Set our api routes
 app.use('/user', userRoutes);
 app.use('/coins', coinRoutes);
+app.use('/coinHistory', coinHistoryRoutes);
 // app.use('/comments', commentsRoutes);
 
 // Catch all other routes and return the index file
