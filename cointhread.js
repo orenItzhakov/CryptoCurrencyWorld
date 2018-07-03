@@ -66,7 +66,7 @@ let cryptoArray = [ "BTC","ETH","XRP","BCH","EOS","LTC","XLM","ADA","USDT","IOT"
 
 // setInterval(function () {
     cryptoArray.forEach((el)=>{
-        request(`https://min-api.cryptocompare.com/data/histoday?fsym=${el}&tsym=USD&limit=10`, function (error, response, body) {
+        request(`https://min-api.cryptocompare.com/data/histoday?fsym=${el}&tsym=USD&limit=365`, function (error, response, body) {
             let obj = JSON.parse(body)
             let dataArray = obj.Data
             // console.log(dataArray)

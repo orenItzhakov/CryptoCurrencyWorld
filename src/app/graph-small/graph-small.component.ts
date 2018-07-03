@@ -18,13 +18,15 @@ results7day:any;
 
   ngOnInit() {
     this.coinHistoryDataService.getHistory(this.shortName).subscribe(results=>{this.results=results;
+        // console.log(this.results[0].coinHistoryData)
     
-    this.results7day = this.results.Data.filter((element, index)=>index%7===0)
+    this.results7day = this.results[0].coinHistoryData.filter((element, index)=>index%7===0)
       
-    this.results7day.forEach(element=>this.timeArray.push(timeConverter(element.time))) 
+    this.results7day.forEach(element=>this.timeArray.push(timeConverter(element.date))) 
+    // console.log(this.timeArray)
 
-      this.results7day.forEach(element=>{this.priceArray.push(element.close)})
-      
+      this.results7day.forEach(element=>{this.priceArray.push(element.price)})
+      console.log(this.priceArray)
       let ctx = (<HTMLCanvasElement> document.getElementById(this.shortName)).getContext('2d')
       Chart.defaults.scale.gridLines.display = false;
     

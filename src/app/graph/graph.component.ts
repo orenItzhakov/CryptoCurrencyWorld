@@ -21,8 +21,8 @@ this.route.params.subscribe(params=>{
     
 this.coinHistoryDataService.getHistory(params.shortName).subscribe(results=>{this.results=results;
 
-this.results.Data.forEach(element=>this.timeArray.push(timeConverter(element.time)))
-this.results.Data.forEach(element=>{this.priceArray.push(element.close)})
+this.results[0].coinHistoryData.forEach(element=>this.timeArray.push(timeConverter(element.date)))
+this.results[0].coinHistoryData.forEach(element=>{this.priceArray.push(element.price)})
 
 let ctx = (<HTMLCanvasElement> document.getElementById("myChart")).getContext('2d')
 let myChart = new Chart(ctx, {
