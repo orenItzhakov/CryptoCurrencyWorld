@@ -26,6 +26,7 @@
           <td>${{coin.volume| number:'.2'}}</td>
           <td [ngClass]="check(idx)">{{coin.change| number:'.4'}}%</td>
           <td>{{coin.circulating_supply| number}}</td>
+          <td><div class="chartSmall"><app-graph-small [shortName]=coin.shortName></app-graph-small> </div></td>
           <td class="buy" routerLink="coin-details/{{coin.shortName}}">Buy</td>
         </tr>
       </tbody> 

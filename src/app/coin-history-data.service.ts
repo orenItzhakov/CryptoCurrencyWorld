@@ -9,7 +9,7 @@ export class CoinHistoryDataService {
   constructor(private http: HttpClient) { }
   
   getHistory(shortName){
-    return this.http.get(`https://min-api.cryptocompare.com/data/histoday?fsym=${shortName}&tsym=USD&limit=400`)
+    return this.http.get(`https://min-api.cryptocompare.com/data/histoday?fsym=${shortName}&tsym=USD&limit=365`)
   }
 
 

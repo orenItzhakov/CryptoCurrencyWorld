@@ -19,7 +19,7 @@ export class GraphComponent implements OnInit {
   ngOnInit() {
 this.route.params.subscribe(params=>{
     
-this.coinHistoryDataService.getHistory(params.shortName).subscribe(results=>{this.results=results; 
+this.coinHistoryDataService.getHistory(params.shortName).subscribe(results=>{this.results=results;
 
 this.results.Data.forEach(element=>this.timeArray.push(timeConverter(element.time)))
 this.results.Data.forEach(element=>{this.priceArray.push(element.close)})
@@ -38,10 +38,12 @@ data: {
         fill:true,
         lineTension:0,
         pointRadius:0,
+        
     }]
 },
 options:
- {  responsive: true,
+ {  
+     responsive: true,
    
     maintainAspectRatio: false,
     scales: {
@@ -53,6 +55,16 @@ options:
     }
 }
 });
+
+// {
+    
+//     scaleShowLabels : false, //remove labels
+//     tooltipEvents:[], //remove trigger from tooltips so they will'nt be show
+//     pointDot : false, //remove the points markers
+//     scaleShowGridLines: true //set to false to remove the grids background
+// }
+
+
 })
 
 }) 

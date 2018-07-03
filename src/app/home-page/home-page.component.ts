@@ -18,10 +18,7 @@ export class HomePageComponent implements OnInit {
 
   ngOnInit() {
     this.coinsService.get();
-    setInterval(()=>{ 
-      this.coinsService.get();
-      console.log("Get coins");
-     }, 10000);
+    this.loadData()
   }
 
   check(id){
@@ -33,4 +30,13 @@ export class HomePageComponent implements OnInit {
   checkImg(name){
     if(name) return "sprite-"+ name.replace(/\s/g, '').toLowerCase();
   }
+
+  loadData(){
+    setInterval(()=>{ 
+      this.coinsService.get();
+      console.log("Get coins");
+     }, 10000);
+  }
+
+
 }
