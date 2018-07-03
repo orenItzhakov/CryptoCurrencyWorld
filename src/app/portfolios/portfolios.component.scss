@@ -1,31 +1,12 @@
-$width: 94%;
-.user{
-    width: $width;
-    color: #fff;
-    .name{
-        font-size: 66px;
-        margin: 0px;
-        margin-top: 50px;
+.portfolios{
+    color:#fff;
+    h2{
+        font-size: 44px;
+        margin: 60px 0px 40px;
         font-weight: 100;
         text-align: center;
-        line-height: 74px;
     }
-    .details{
-        text-align: center;
-        margin: 0px;
-        font-size: 22px;
-        font-weight: 100;
-        span{
-            color: #00cf70;
-            font-weight: 300;
-        }
-    }
-    table, th, td {
-        border: 1px solid #FFF;
-        border-collapse: collapse;
-        text-align: center;
-    }
-    .my_coins,.old_coins{
+    .users{
         width: 94%;
         margin: 20px auto;
         table{
@@ -39,14 +20,27 @@ $width: 94%;
                 th{
                     border-color: #000;
                 }
-                // th:nth-child(2){
-                //     width: 150px;
-                // }
             }
             tbody{
                 background: rgba(0, 0, 0, 0.4) !important;
                 td {
                     font-weight: 300;
+                }
+                td:nth-child(6){
+                    width: 290px;
+                    white-space: nowrap;
+                    display: block;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                }
+                td a{
+                    color: #0cef87;
+                    letter-spacing: 1px;
+                    font-weight: 400 !important;
+                }
+                td a:hover{
+                    text-decoration: none;
+                    color: #fff;
                 }
             }
             .sell{
@@ -62,13 +56,6 @@ $width: 94%;
             .sell:hover{
                 color: #Fff;
             }
-        }
-    }
-    .old_coins{
-        p{
-            margin-top: 40px;
-            font-size: 30px;
-            font-weight: 300;
         }
     }
 }

@@ -1,16 +1,26 @@
 <div class="container">
-    <h1 routerLink="/"><img src="assets/coin2.png" alt=""> Crypto Currency World</h1>
+    <h1 routerLink="/">
+        <img src="assets/coin2.png" alt=""> Crypto Currency World</h1>
 
     <ul>
         <li routerLink="/" [ngClass]="{'curPage': router.url == '/'}">Home</li>
-        <li routerLink="/myPortfolio" [ngClass]="{'curPage': router.url == '/myPortfolio'}">My portfolio</li>
+        <li (click)="goToProfile()">My portfolio</li>
+        <li (click)="openLoginDialog()">Login</li>
+        <li (click)="logout()">Logout</li>
+        <li (click)="openSignUpDialog()">SignUp</li>
+        <li routerLink="/portfolios" [ngClass]="{'curPage': router.url == '/portfolios'}">Portfolios</li>
         <li>
-            <span class="cart" (click)="cartShow()"><i class="material-icons">shopping_cart</i> My Cart</span>
+            <span class="cart" (click)="cartShow()">
+                <i class="material-icons">shopping_cart</i> My Cart</span>
             <div class="open" *ngIf="show && user">
                 <p>Balance: ${{user.balance| number}}</p>
                 <p>Crypto portfolio: ${{calcCoins| number}}</p>
             </div>
         </li>
     </ul>
+    <div class="logout" *ngIf = "logoutMessage">See you soon !!<button class="closebtn" (click)="turnOff(1)">x</button></div>
+    <div class="ban" *ngIf = "banMessage">Sorry, you have to login first!<button class="closebtn" (click)="turnOff(2)">x</button></div>
+    <div class="login" *ngIf = "loginMessage">Hi, {{user.firstName}}<button class="closebtn" (click)="turnOff(3)">x</button></div>
+    <div class="welcome" *ngIf = "welcomeMessage">Welcome to CryptoCurrency World !!<button class="closebtn" (click)="turnOff(4)">x</button></div>
 
 </div>

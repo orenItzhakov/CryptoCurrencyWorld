@@ -11,10 +11,22 @@ import { CoinDetailsComponent } from './coin-details/coin-details.component';
 import { FormsModule } from '@angular/forms';
 import { UserService } from './user.service';
 import { HttpClientModule } from '@angular/common/http';
-import {MatButtonModule, MatCheckboxModule,MatSnackBarModule} from '@angular/material';
+import {MatButtonModule,MatTooltipModule, MatCheckboxModule,MatSnackBarModule} from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { GraphComponent } from './graph/graph.component';
 import { GraphSmallComponent } from './graph-small/graph-small.component';
+import { LoginComponent } from './login/login.component';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { AuthInterceptor } from './AuthInterceptor'
+import { AuthService } from './auth.service';
+import {MatDialogModule} from '@angular/material/dialog';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatInputModule} from '@angular/material';
+import { SignupComponent } from './signup/signup.component';
+import {MatTableModule} from '@angular/material/table';
+
+
+import { PortfoliosComponent } from './portfolios/portfolios.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -23,19 +35,33 @@ import { GraphSmallComponent } from './graph-small/graph-small.component';
     MyPortfolioComponent,
     CoinDetailsComponent,
     GraphComponent,
-    GraphSmallComponent
+    GraphSmallComponent,
+    LoginComponent,
+    SignupComponent,
+    PortfoliosComponent
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     HttpClientModule,
     AppRoutingModule,
+    MatTooltipModule,
     MatButtonModule, 
     MatCheckboxModule,
     MatSnackBarModule,
-    FormsModule
+    FormsModule,
+    MatDialogModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatTableModule
   ],
-  providers: [CoinsService,UserService],
-  bootstrap: [AppComponent]
+  entryComponents: [LoginComponent, SignupComponent],
+  providers: [CoinsService,UserService, AuthService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true
+    }], 
+    bootstrap: [AppComponent]
 })
 export class AppModule { }

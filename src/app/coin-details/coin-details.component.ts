@@ -14,6 +14,8 @@ export class CoinDetailsComponent implements OnInit {
   coin : Coin;
   valueUSD : number;
   valueCoin : number = 1;
+  myInterval : any;
+  flag :boolean = false ;
   constructor( private route : ActivatedRoute , private coinsService : CoinsService, private userService : UserService,public snackBar: MatSnackBar) {
     
   }
@@ -31,14 +33,17 @@ export class CoinDetailsComponent implements OnInit {
       });
 
       this.coinsService.get();
-      setInterval(()=>{ 
+      this.myInterval = setInterval(()=>{ 
         this.coinsService.getCoin(params.shortName);
+        if(this.flag) clearInterval(this.myInterval);
         console.log("Get coin");
-       }, 5000);
+      }, 5000);
+
     });
+  }
 
-    
-
+  ngOnDestroy(){
+    this.flag = true; //stop the Interval
   }
 
   toCoin(){
@@ -50,7 +55,7 @@ export class CoinDetailsComponent implements OnInit {
 
   buyCoin(){
     if(this.userService.user.balance >= this.valueUSD){
-      this.userService.addCoin(this.valueCoin , this.coin.name);
+      this.userService.addCoin(this.valueCoin ,this.valueUSD, this.coin.name);
       this.snackBar.open("Transaction Done !!", "OK", {
         duration: 2000,
       });

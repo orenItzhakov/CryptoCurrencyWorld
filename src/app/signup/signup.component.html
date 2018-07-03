@@ -1,0 +1,103 @@
+<form class="example-form">
+  <h2 mat-dialog-title>CryptoCurrency World</h2>
+  <table class="example-full-width" cellspacing="0">
+    <tr>
+      <td>
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="First name" [(ngModel)]="data.firstName" name="firstName">
+        </mat-form-field>
+      </td>
+      <td>
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="Last Name" [(ngModel)]="data.lastName" name="lastName">
+        </mat-form-field>
+      </td>
+    </tr>
+  </table>
+  <mat-form-field class="example-full-width">
+    <input matInput placeholder="Email" [(ngModel)]="data.email" name="Email">
+  </mat-form-field>
+  <mat-form-field class="example-full-width">
+    <input matInput placeholder="User Name" [(ngModel)]="data.username" name="username">
+  </mat-form-field>
+  <mat-form-field class="example-full-width">
+    <input matInput type="password" placeholder="Password" [(ngModel)]="data.password" name="password">
+  </mat-form-field>
+  <button mat-raised-button (click)="onCloseNo()">Cancel</button>
+  <button mat-raised-button (click)="onCloseOk()">Sign up</button>
+</form>
+
+<!-- <div class="father">
+
+  <div class="loginbox"> -->
+    <!-- <div class="part_a" [ngClass]="{moveUp:con}">
+
+      <div class="loginbox-header">
+        <h1>Crypto Currency World</h1>
+      </div>
+      <div class="loginbox-body">
+        <label class="form-input">
+          <i class="material-icons">person</i>
+          <input type="text" required />
+          <span class="label">Username</span>
+          <span class="underline"></span>
+        </label>
+
+        <label class="form-input">
+          <i class="material-icons">lock</i>
+          <input type="password" required />
+          <span class="label">Password</span>
+          <div class="underline"></div>
+        </label>
+
+        <button class="btn">SIGN IN</button>
+        <p class="register"><span (click)="changePart()">REGISTER</span></p>
+      </div>
+    </div> -->
+    <!-- <div class="part_b">
+      <div class="loginbox-header">
+        <h1>Register</h1>
+      </div>
+      <div class="loginbox-body">
+        <label class="form-input">
+          <i class="material-icons">create</i>
+          <input type="text" required  matInput [(ngModel)]="data.firstName" name="firstName"/>
+          <span class="label">First name</span>
+          <span class="underline"></span>
+        </label>
+
+        <label class="form-input">
+          <i class="material-icons">create</i>
+          <input type="text" required matInput [(ngModel)]="data.lastName" name="lastName"/>
+          <span class="label">Last name</span>
+          <span class="underline"></span>
+        </label>
+
+        <label class="form-input">
+          <i class="material-icons">create</i>
+          <input type="text" required  matInput [(ngModel)]="data.username" name="username"/>
+          <span class="label">Username</span>
+          <span class="underline"></span>
+        </label>
+
+        <label class="form-input">
+          <i class="material-icons">create</i>
+          <input type="text" required  matInput [(ngModel)]="data.email" name="Email"/>
+          <span class="label">Email</span>
+          <span class="underline"></span>
+        </label>
+
+        <label class="form-input">
+          <i class="material-icons">create</i>
+          <input type="password" required  matInput [(ngModel)]="data.password" name="password"/>
+          <span class="label">Password</span>
+          <div class="underline"></div>
+        </label>
+
+        <button class="btn" mat-raised-button (click)="onCloseOk()">REGISTER</button>
+      </div>
+    </div>
+  </div>
+
+
+</div> -->

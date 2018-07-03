@@ -54,8 +54,8 @@ ul{
     }
     .open {
         border: 2px solid #00cf70;
-        background-color: #fff;
-        color: #0f1f2c;
+        background-color: #0f1d2af0;
+        color: #ffffff;
         padding: 18px;
         position: absolute;
         right: 0px;
@@ -70,5 +70,41 @@ ul{
     }
 }
 
+.logout {
+    padding: 20px;
+    background-color: #2196F3;
+    color: rgb(0, 0, 0);
+    display: table;
+}
+.login {
+    padding: 20px;
+    background-color: #00cf70;
+    color: rgb(0, 0, 0);
+    display: table;
+}
+.welcome {
+    padding: 20px;
+    background-color: #12df35;
+    color: rgb(0, 0, 0);
+    display: table;
+}
+.ban {
+    padding: 20px;
+    background-color: #dcdf12;
+    color: rgb(0, 0, 0);
+    display: table;
+}
+.closebtn {
+    margin-left: 15px;
+    color: white;
+    font-weight: bold;
+    float: right;
+    font-size: 22px;
+    line-height: 20px;
+    cursor: pointer;
+    transition: 0.3s;
+}
 
-
+.closebtn:hover {
+    color: black;
+}
