@@ -6,5 +6,9 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'app';
+  ngOnInit() {
+    if (!(JSON.parse(localStorage.getItem('user')))) {
+      window.location.href = '/login';
+    }
+  }
 }

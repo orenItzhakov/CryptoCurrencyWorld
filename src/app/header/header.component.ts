@@ -37,7 +37,7 @@ export class HeaderComponent implements OnInit {
     }
   }
   logout() {
-    if (this.currentUserID) {
+    if (JSON.parse(localStorage.getItem('user'))) {
       this.banMessage = false;
       this.loginMessage = false;
       this.welcomeMessage = false;
@@ -45,7 +45,7 @@ export class HeaderComponent implements OnInit {
       localStorage.removeItem('user');
       this.user = undefined;
       this.currentUserID = '';
-      this.router.navigate(['']);
+      window.location.href = '/login';
     }
   }
 

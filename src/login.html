@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <link href="https://fonts.googleapis.com/css?family=Kaushan+Script|Roboto:300,100,400,500,700,500" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
+  <title>CryptoCurrencyWorld</title>
+  <style>
+    /* You can add global styles to this file, and also import other style files */
+
+    body,
+    html {
+      padding: 0;
+      margin: 0;
+      width: 100%;
+      height: 100%;
+    }
+
+    body {
+      background: url('background.jpg') no-repeat top;
+      background-size: cover;
+      font-family: 'Roboto', sans-serif;
+    }
+
+    *,
+    *::before,
+    *::after {
+      outline: none;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+    }
+
+    .father {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      color: #fff;
+    }
+
+    .father .loginbox {
+      overflow: hidden;
+      border-radius: 0.1rem;
+      width: 100%;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 384px;
+      height: 448px;
+      box-shadow: 0 0 11px 2px #fff 8f;
+      background-color: rgba(0, 0, 0, 0.5);
+    }
+
+    .father .part_a,
+    .father .part_b {
+      transition: 1.5s;
+      position: relative;
+    }
+
+    .father .moveUp {
+      margin-top: -448px;
+    }
+
+    .father .part_b h1 {
+      padding: 20px 13px !important;
+      margin: 0;
+    }
+
+    .father .part_b .loginbox-body {
+      height: 348px;
+    }
+
+    .father .part_b label,
+    .father .part_b input {
+      font-size: 15px !important;
+    }
+
+    .father .part_b input {
+      padding-top: 25px !important;
+    }
+
+    .father .part_b .form-input {
+      margin-bottom: 7px;
+    }
+
+    .father .part_b button {
+      bottom: 20px !important;
+    }
+
+    .father .part_b .material-icons {
+      font-size: 18px !important;
+    }
+
+    .father .loginbox .loginbox-header {
+      position: relative;
+    }
+
+    .father .loginbox .loginbox-header h1 {
+      font-family: 'Kaushan Script', cursive;
+      text-align: center;
+      font-size: 50px;
+      padding: 40px 13px;
+    }
+
+    .father .loginbox-body {
+      font-weight: 300;
+      font-family: 'Roboto', sans-serif;
+      width: 324px;
+      margin-left: auto;
+      margin-right: auto;
+      height: 240px;
+      cursor: pointer;
+    }
+
+    .father .form-input {
+      display: block;
+      position: relative;
+      margin-bottom: 10px;
+    }
+
+    .father .form-input .material-icons {
+      position: absolute;
+      font-size: 1.5rem;
+      bottom: 4px;
+      right: 0;
+    }
+
+    .father .form-input input {
+      border: none;
+      margin-right: 2.25rem;
+      box-shadow: none;
+      outline-style: none;
+      padding: 30px 0px 0px 0px;
+      width: 100%;
+      color: #fff;
+      font-size: 18px;
+      background: transparent;
+    }
+
+    .father .form-input input~.label {
+      color: #fff;
+      font-size: 1rem;
+      display: block;
+      margin: 0;
+      pointer-events: none;
+      position: absolute;
+      top: 1.5rem;
+      left: 0;
+      transition: top 0.2s, font 0.2s;
+      z-index: 1;
+    }
+
+    .father .form-input input~.underline {
+      background-color: #fff;
+      height: 1px;
+      width: 100%;
+      position: absolute;
+      bottom: 0;
+    }
+
+    .father .form-input input:hover~.label,
+    .father .form-input input:focus~.label {
+      color: #00cf70;
+    }
+
+    .father .form-input input:focus~.label,
+    .father .form-input input:valid~.label {
+      top: 0;
+      font-size: 0.85rem;
+    }
+
+    .father button {
+      background-color: #00cf70;
+      color: #fff;
+      padding: 8px 20px;
+      position: absolute;
+      right: 30px;
+      bottom: 30px;
+    }
+
+    .father button:hover {
+      background-color: #0eda7c;
+      color: #fff;
+    }
+
+    .father .reg {
+      color: #00cf70;
+      margin: 0px;
+      padding: 0px;
+    }
+
+    .father .loginbox-body::after {
+      content: "";
+      clear: both;
+    }
+
+    .father .register {
+      font-weight: 400;
+      letter-spacing: 1px;
+      position: absolute;
+      left: 30px;
+      line-height: 42px;
+      bottom: 30px;
+      transition: 0.5s;
+      margin: 0px;
+      padding: 0px;
+    }
+
+    .father .register span:hover {
+      text-shadow: 0 0 1px white;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="father">
+
+    <div class="loginbox">
+      <div class="part_a" id="part_a">
+        <div class="loginbox-header">
+          <h1>Crypto Currency World</h1>
+        </div>
+        <div class="loginbox-body">
+          <label class="form-input">
+            <i class="material-icons">person</i>
+            <input type="text" required class="username" />
+            <span class="label">Username</span>
+            <span class="underline"></span>
+          </label>
+
+          <label class="form-input">
+            <i class="material-icons">lock</i>
+            <input type="password" required class="password" />
+            <span class="label">Password</span>
+            <div class="underline"></div>
+          </label>
+
+          <button class="btn ajaxCall">SIGN IN</button>
+          <p class="register">
+            <span onclick="add()">REGISTER</span>
+          </p>
+        </div>
+      </div>
+      <div class="part_b">
+        <div class="loginbox-header">
+          <h1>Register</h1>
+        </div>
+        <div class="loginbox-body">
+          <label class="form-input">
+            <i class="material-icons">create</i>
+            <input type="text" required matInput [(ngModel)]="data.firstName" name="firstName" />
+            <span class="label">First name</span>
+            <span class="underline"></span>
+          </label>
+
+          <label class="form-input">
+            <i class="material-icons">create</i>
+            <input type="text" required matInput [(ngModel)]="data.lastName" name="lastName" />
+            <span class="label">Last name</span>
+            <span class="underline"></span>
+          </label>
+
+          <label class="form-input">
+            <i class="material-icons">create</i>
+            <input type="text" required matInput [(ngModel)]="data.username" name="username" />
+            <span class="label">Username</span>
+            <span class="underline"></span>
+          </label>
+
+          <label class="form-input">
+            <i class="material-icons">create</i>
+            <input type="text" required matInput [(ngModel)]="data.email" name="Email" />
+            <span class="label">Email</span>
+            <span class="underline"></span>
+          </label>
+
+          <label class="form-input">
+            <i class="material-icons">create</i>
+            <input type="password" required matInput [(ngModel)]="data.password" name="password" />
+            <span class="label">Password</span>
+            <div class="underline"></div>
+          </label>
+
+          <button class="btn" mat-raised-button (click)="onCloseOk()">REGISTER</button>
+        </div>
+      </div>
+    </div>
+
+
+  </div>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+  <script>
+    var add = function () {
+      document.getElementById("part_a").classList.toggle("moveUp");
+    };
+
+    $(document).ready(function () {
+      $(".ajaxCall").click(function () {
+        var username = $(".username").val();
+        var password = $(".password").val();
+        $.post("/login",
+          {
+            username: username,
+            password: password
+          },
+          function (data, status) {
+            if (data.ID.status) {
+              localStorage.setItem("user", JSON.stringify(data));
+              window.location = "/";
+            }
+            else {
+              alert("worng username or password");
+            }
+
+          });
+      });
+    })
+  </script>
+</body>
+
+</html>

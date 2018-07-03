@@ -5,9 +5,9 @@
     <ul>
         <li routerLink="/" [ngClass]="{'curPage': router.url == '/'}">Home</li>
         <li (click)="goToProfile()">My portfolio</li>
-        <li (click)="openLoginDialog()">Login</li>
+        <!-- <li (click)="openLoginDialog()">Login</li> -->
         <li (click)="logout()">Logout</li>
-        <li (click)="openSignUpDialog()">SignUp</li>
+        <!-- <li (click)="openSignUpDialog()">SignUp</li> -->
         <li routerLink="/portfolios" [ngClass]="{'curPage': router.url == '/portfolios'}">Portfolios</li>
         <li>
             <span class="cart" (click)="cartShow()">
