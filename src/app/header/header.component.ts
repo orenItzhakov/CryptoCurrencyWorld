@@ -18,14 +18,16 @@ export class HeaderComponent implements OnInit {
   calcCoins: number = 0;
   currentUserID: String;
   access_token: String;
-  logoutMessage: boolean = false;
-  banMessage: boolean = false;
-  loginMessage: boolean = false;
-  welcomeMessage: boolean = false;
   constructor(private authService: AuthService, private router: Router, private userService: UserService, public dialog: MatDialog) { }
 
   ngOnInit() {
     this.currentUserID = JSON.parse(localStorage.getItem('user')).ID.userID;
+    this.userService.get(this.currentUserID);
+    this.userService.userObservable.subscribe((data) => {
+      this.user = data;
+      this.calcAllCoins();
+    })
+
   }
 
   cartShow() {
@@ -39,26 +41,12 @@ export class HeaderComponent implements OnInit {
   }
   logout() {
     if (JSON.parse(localStorage.getItem('user'))) {
-      this.banMessage = false;
-      this.loginMessage = false;
-      this.welcomeMessage = false;
-      this.logoutMessage = true;
       localStorage.removeItem('user');
       this.user = undefined;
       this.currentUserID = '';
       window.location.href = '/login';
     }
   }
-
-  turnOff(kind) {
-    switch (kind) {
-      case 1: this.logoutMessage = false;
-      case 2: this.banMessage = false;
-      case 3: this.loginMessage = false;
-      case 4: this.welcomeMessage = false;
-    }
-  }
-
   // openLoginDialog(): void {
   //   let dialogRef = this.dialog.open(LoginComponent, {
   //     width: '400px',
@@ -118,12 +106,8 @@ export class HeaderComponent implements OnInit {
   goToProfile() {
 
     if (JSON.parse(localStorage.getItem('user'))) {
-      this.loginMessage = false;
       this.currentUserID = JSON.parse(localStorage.getItem('user')).ID.userID;
       this.router.navigate(['/myPortfolio/', this.currentUserID]);
-    }
-    else {
-      this.banMessage = true;
     }
   }
 
