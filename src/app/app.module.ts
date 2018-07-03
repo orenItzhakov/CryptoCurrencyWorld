@@ -15,6 +15,17 @@ import {MatButtonModule,MatTooltipModule, MatCheckboxModule,MatSnackBarModule} f
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { GraphComponent } from './graph/graph.component';
 import { GraphSmallComponent } from './graph-small/graph-small.component';
+import { LoginComponent } from './login/login.component';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { AuthInterceptor } from './AuthInterceptor'
+import { AuthService } from './auth.service';
+import {MatDialogModule} from '@angular/material/dialog';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatInputModule} from '@angular/material';
+import { SignupComponent } from './signup/signup.component';
+import {MatTableModule} from '@angular/material/table';
+
+
 import { PortfoliosComponent } from './portfolios/portfolios.component';
 @NgModule({
   declarations: [
@@ -25,6 +36,8 @@ import { PortfoliosComponent } from './portfolios/portfolios.component';
     CoinDetailsComponent,
     GraphComponent,
     GraphSmallComponent,
+    LoginComponent,
+    SignupComponent,
     PortfoliosComponent
   ],
   imports: [
@@ -36,9 +49,19 @@ import { PortfoliosComponent } from './portfolios/portfolios.component';
     MatButtonModule, 
     MatCheckboxModule,
     MatSnackBarModule,
-    FormsModule
+    FormsModule,
+    MatDialogModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatTableModule
   ],
-  providers: [CoinsService,UserService],
-  bootstrap: [AppComponent]
+  entryComponents: [LoginComponent, SignupComponent],
+  providers: [CoinsService,UserService, AuthService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true
+    }], 
+    bootstrap: [AppComponent]
 })
 export class AppModule { }

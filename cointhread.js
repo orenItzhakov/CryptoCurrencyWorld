@@ -35,7 +35,7 @@ request('https://min-api.cryptocompare.com/data/pricemultifull?fsyms=BTC,ETH,XRP
                                 shortName: objnw[j].USD.FROMSYMBOL,
                                 price: objnw[j].USD.PRICE,
                                 market_cap: objnw[j].USD.MKTCAP,
-                                volume: objnw[j].USD.VOLUME24HOURTO,
+                                volume: objnw[j].USD.TOTALVOLUME24HTO,
                                 change: objnw[j].USD.CHANGEPCT24HOUR,
                                 circulating_supply: objnw[j].USD.SUPPLY
                             };
