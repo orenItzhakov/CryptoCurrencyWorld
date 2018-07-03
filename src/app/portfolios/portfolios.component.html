@@ -1,0 +1,31 @@
+<div class="portfolios container" *ngIf="users">
+  <h2>Portfolios</h2>
+
+    <div class="users">
+      <table>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>First name</th>
+            <th>Last name</th>
+            <th>Email</th>
+            <th>Profit</th>
+            <th>Coins</th>
+            <th>Options</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let user of users ; let idx = index;">
+            <td>{{idx}}</td>
+            <td>{{user.firstName}}</td>
+            <td>{{user.lastName}}</td>
+            <td>{{user.email}}</td>
+            <td *ngIf="checkProfitFlag">{{usersProfit[user._id].profit}}</td>
+            <td *ngIf="checkProfitFlag"><span matTooltip="{{usersProfit[user._id].coinsNames()}}">{{usersProfit[user._id].coinsNames()}}</span></td>
+            <td><a href="mailto:{{user.email}}">Contact</a></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+</div>

@@ -11,7 +11,7 @@ import { CoinDetailsComponent } from './coin-details/coin-details.component';
 import { FormsModule } from '@angular/forms';
 import { UserService } from './user.service';
 import { HttpClientModule } from '@angular/common/http';
-import {MatButtonModule, MatCheckboxModule,MatSnackBarModule} from '@angular/material';
+import {MatButtonModule,MatTooltipModule, MatCheckboxModule,MatSnackBarModule} from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { GraphComponent } from './graph/graph.component';
 import { GraphSmallComponent } from './graph-small/graph-small.component';
@@ -26,6 +26,7 @@ import { SignupComponent } from './signup/signup.component';
 import {MatTableModule} from '@angular/material/table';
 
 
+import { PortfoliosComponent } from './portfolios/portfolios.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -36,13 +37,15 @@ import {MatTableModule} from '@angular/material/table';
     GraphComponent,
     GraphSmallComponent,
     LoginComponent,
-    SignupComponent
+    SignupComponent,
+    PortfoliosComponent
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     HttpClientModule,
     AppRoutingModule,
+    MatTooltipModule,
     MatButtonModule, 
     MatCheckboxModule,
     MatSnackBarModule,

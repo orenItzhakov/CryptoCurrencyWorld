@@ -8,6 +8,7 @@
         <li (click)="openLoginDialog()">Login</li>
         <li (click)="logout()">Logout</li>
         <li (click)="openSignUpDialog()">SignUp</li>
+        <li routerLink="/portfolios" [ngClass]="{'curPage': router.url == '/portfolios'}">Portfolios</li>
         <li>
             <span class="cart" (click)="cartShow()">
                 <i class="material-icons">shopping_cart</i> My Cart</span>

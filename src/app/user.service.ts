@@ -8,14 +8,20 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root'
 })
 export class UserService {
-  user: User;
+  public user : User;
+  public users: Array<User> = new Array<User>();
 
   //set Observable & Subject to coin
   public userSubject: Subject<User> = new Subject<User>();
   public userObservable: Observable<User>;
 
-  constructor(private http: HttpClient) {
+  //set Observable & Subject to coin
+  public usersSubject : Subject<User[]> = new Subject<User[]>();
+  public usersObservable:Observable<User[]>;
+
+  constructor(private http : HttpClient) {
     this.userObservable = this.userSubject.asObservable(); // connect the Observable to Subject
+    this.usersObservable = this.usersSubject.asObservable(); // connect the Observable to Subject
   }
 
   get(id: String): void {
@@ -25,8 +31,15 @@ export class UserService {
     })
   }
 
-  addCoin(amount, name) {
-    this.http.post<User>('/user/buy', { amount: amount, coin: name, id: this.user._id }).subscribe(user => {
+  getUsers(): void {
+    this.http.get<User[]>('/user/allUsers').subscribe(users => {
+      this.users = users;
+      this.usersSubject.next(this.users); //update the observable
+    })
+  }
+
+  addCoin(amount,usd,name){
+    this.http.post<User>('/user/buy',{amount:amount ,usd:usd, coin:name,id:this.user._id}).subscribe(user => {
       this.user = user[0];
       this.userSubject.next(this.user); //update the observable
     });

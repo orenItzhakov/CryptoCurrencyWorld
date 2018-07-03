@@ -9,26 +9,34 @@ import { Router } from '@angular/router';
   styleUrls: ['./home-page.component.scss', './home-page.component2.scss']
 })
 export class HomePageComponent implements OnInit {
-
+  myInterval : any;
+  flag :boolean = false ;
   coins: Array<Coin>;
   banMessage : boolean = false;
   constructor(private coinsService: CoinsService, private router : Router) {
     this.coinsService.coinsObservable.subscribe((data) => {
       this.coins = data;
+      this.coins.sort(this.compare);
     });
   }
 
   ngOnInit() {
     this.coinsService.get();
-    setInterval(() => {
+    this.myInterval = setInterval(()=>{ 
       this.coinsService.get();
-      //console.log("Get coins");
-    }, 10000);
+      if(this.flag) clearInterval(this.myInterval);
+      console.log("Get coins");
+     }, 10000);
   }
 
-  check(id) {
-    if (this.coins[id].change > 0) return "green";
-    else if (this.coins[id].change < 0) return "red";
+  ngOnDestroy(){
+    this.flag = true; //stop the Interval
+  }
+
+  check(id){
+    if(this.coins[id].change == this.coinsService.coinsOld[id].change) return "";
+    else if(this.coins[id].change > this.coinsService.coinsOld[id].change) return "green";
+    else return "red";
   }
 
   turnOff(kind) {
@@ -50,4 +58,13 @@ export class HomePageComponent implements OnInit {
     }
   }
 
+  
+  compare(a,b) {
+    if (a.market_cap < b.market_cap)
+      return 1;
+    if (a.market_cap > b.market_cap)
+      return -1;
+    return 0;
+  }
+  
 }
