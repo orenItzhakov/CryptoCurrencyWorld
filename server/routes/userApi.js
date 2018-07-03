@@ -5,10 +5,9 @@ const User = require('../models/user');
 const Coin = require('../models/coin');
 const mongoose = require('mongoose');
 
-router.get('/myPortfolio', (req, res) => {
+router.get('/allUsers', (req, res) => {
     User.find().populate('coins').exec()
         .then(data => {
-            console.log(data);
             res.send(JSON.stringify(data));
         })
         .catch(err => console.log(err));
@@ -18,6 +17,7 @@ router.post('/buy', (req, res) => {
     let userID = req.body.id;
     let coinName = req.body.coin;
     let amount = req.body.amount;
+    let usd = req.body.usd;
     User.find({ _id: userID }).populate('coins').exec()
         .then(user => {
             Coin.find({ name: coinName }).exec()
@@ -28,7 +28,7 @@ router.post('/buy', (req, res) => {
                         _id: new mongoose.Types.ObjectId(),
                         name: coinName,
                         amount: amount,
-                        currentPrice: coin[0].price,
+                        currentPrice: usd,
                         Date: new Date(),
                         user: userID,
                         isActive: true

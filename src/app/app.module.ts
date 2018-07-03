@@ -11,10 +11,11 @@ import { CoinDetailsComponent } from './coin-details/coin-details.component';
 import { FormsModule } from '@angular/forms';
 import { UserService } from './user.service';
 import { HttpClientModule } from '@angular/common/http';
-import {MatButtonModule, MatCheckboxModule,MatSnackBarModule} from '@angular/material';
+import {MatButtonModule,MatTooltipModule, MatCheckboxModule,MatSnackBarModule} from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { GraphComponent } from './graph/graph.component';
 import { GraphSmallComponent } from './graph-small/graph-small.component';
+import { PortfoliosComponent } from './portfolios/portfolios.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -23,13 +24,15 @@ import { GraphSmallComponent } from './graph-small/graph-small.component';
     MyPortfolioComponent,
     CoinDetailsComponent,
     GraphComponent,
-    GraphSmallComponent
+    GraphSmallComponent,
+    PortfoliosComponent
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     HttpClientModule,
     AppRoutingModule,
+    MatTooltipModule,
     MatButtonModule, 
     MatCheckboxModule,
     MatSnackBarModule,

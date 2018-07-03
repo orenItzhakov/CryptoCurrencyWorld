@@ -4,6 +4,7 @@
     <ul>
         <li routerLink="/" [ngClass]="{'curPage': router.url == '/'}">Home</li>
         <li routerLink="/myPortfolio" [ngClass]="{'curPage': router.url == '/myPortfolio'}">My portfolio</li>
+        <li routerLink="/portfolios" [ngClass]="{'curPage': router.url == '/portfolios'}">Portfolios</li>
         <li>
             <span class="cart" (click)="cartShow()"><i class="material-icons">shopping_cart</i> My Cart</span>
             <div class="open" *ngIf="show && user">
