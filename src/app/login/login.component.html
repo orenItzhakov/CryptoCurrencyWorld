@@ -1,39 +1,26 @@
-<!-- <form >
-  <fieldset>
-      <legend>Login</legend>
-      <span class="err"></span>
-      <div class="form-field">
-          <label>Email:</label>
-          <input [(ngModel)]="username" name="username">
-      </div>
-      <div class="form-field">
-          <label>Password:</label>
-          <input [(ngModel)]="password" type="password" name="password">
-      </div>
-  </fieldset>
-  <div class="form-buttons">
-      <button mat-raised-button (click)="onCloseOk()">Login</button>
-      <button mat-raised-button (click)="onCloseNo()">Cancel</button>
-  </div>
-</form> -->
 <div>
-    <h2 mat-dialog-title>CryptoCurrency World</h2>
-    <mat-dialog-content>
-        <div><i class="material-icons">person</i></div>
-      <mat-form-field>
-        <input matInput [(ngModel)]="username" placeholder="User Name">
-      </mat-form-field><br>
-      <div><i class="material-icons">lock</i></div>
-      <mat-form-field>
-        <div>
-        <input matInput [(ngModel)]="password" type="password" placeholder="Password">
+  <h2 mat-dialog-title>CryptoCurrency World</h2>
+  <mat-dialog-content>
+    <div class="container">
+      <i class="material-icons">person</i>
     </div>
-      </mat-form-field>
-  
-      <mat-dialog-actions>
-        <br>
-        <button mat-raised-button (click)="onCloseNo()">Cancel</button>
-        <button mat-raised-button (click)="onCloseOk()">Submit</button>
-      </mat-dialog-actions>
-    </mat-dialog-content>
-  </div>
+    <mat-form-field>
+      <input matInput [(ngModel)]="username" placeholder="User Name">
+    </mat-form-field>
+    <br>
+    <div>
+      <i class="material-icons">lock</i>
+    </div>
+    <mat-form-field>
+      <div>
+        <input matInput [(ngModel)]="password" type="password" placeholder="Password">
+      </div>
+    </mat-form-field>
+
+    <mat-dialog-actions>
+      <br>
+      <button mat-raised-button (click)="onCloseNo()">Cancel</button>
+      <button mat-raised-button (click)="onCloseOk()">Submit</button>
+    </mat-dialog-actions>
+  </mat-dialog-content>
+</div>

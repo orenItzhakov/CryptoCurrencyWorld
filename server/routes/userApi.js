@@ -66,18 +66,11 @@ router.post('/sell', (req, res) => {
 
 router.post('/add', (req, res) => {
     var newUser = req.body.newUser;
-    let flag = true;
-    User.find().exec()
-        .then(users => {
-            for (var i = 0; i < users.length; i++) {
-                if (users[i].email == newUser.email) {
-                    flag = false;
-                    return res.status(409).json({
-                        message: 'username exists !!'
-                    });
-                }
-            }
-            if (flag) {
+    User.find({ email: newUser.email }).exec()
+        .then(user => {
+            if (user.length !== 0) {
+                res.send({ user: user, status: false });
+            } else {
                 let user = new User({
                     _id: new mongoose.Types.ObjectId(),
                     firstName: newUser.firstName,
@@ -87,7 +80,7 @@ router.post('/add', (req, res) => {
                     coins: []
                 });
                 user.save();
-                res.send(JSON.stringify(user))
+                res.send({ user: user, status: true })
             }
         })
 })
@@ -95,22 +88,15 @@ router.post('/add', (req, res) => {
 router.post('/addDetail', (req, res) => {
     var userDetail = req.body.userDetail;
     var ID = req.body.userID;
-    let newUser = true;
-    Detail.find().exec()
-        .then(allDetails => {
-            for (var i = 0; i < allDetails.length; i++) {
-                if ((allDetails[i].username == userDetail.username)) {
-                    flag = true;
-                    newUser = false;
-                    User.deleteOne({ _id: ID }, function (err) {
-                        if (err) console.log(err);
-                    })
-                    return res.status(409).json({
-                        message: 'username exists !!'
-                    });
-                }
-            }
-            if (newUser) {
+    Detail.find({ username: userDetail.username }).exec()
+        .then(userDetails => {
+            if (userDetails.length !== 0) {
+                User.deleteOne({ _id: ID }, function (err) {
+                    if (err) console.log(err);
+                })
+                res.send({ user: userDetails, status: false });
+                return;
+            } else {
                 bcrypt.hash(userDetail.password, 10, (err, hash) => {
                     if (err) console.log(err);
                     else {
@@ -125,14 +111,12 @@ router.post('/addDetail', (req, res) => {
                             });
                         User.find({ _id: ID }).exec()
                             .then(user => {
-                                console.log(user);
-                                res.send(JSON.stringify(user));
+                                res.send(JSON.stringify({ user: user, status: true }));
                             })
                     }
                 })
             }
         })
-
 })
 
 module.exports = router

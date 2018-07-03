@@ -40,11 +40,12 @@ export class UserService {
   }
 
   addUser(user, details) {
-    this.http.post<User>('/user/add', { newUser: user }).subscribe(user => {
-      if (user) {
-        this.http.post<User>('/user/addDetail', { userDetail: details, userID: user._id }).subscribe(user => {
-          if (user) {
-            alert('Welcome to the CryptoCurrenncy World, ' + user[0].firstName + ' !!');
+    this.http.post<any>('/user/add', { newUser: user }).subscribe(result => {
+      if (result.status) {
+        this.http.post<any>('/user/addDetail', { userDetail: details, userID: result.user._id }).subscribe(result => {
+          if (result.status) {
+            //alert('Welcome to the CryptoCurrenncy World, ' + result.user[0].firstName + ' !!');
+            this.user = result.user[0];
           }
           else {
             alert('User Name exists !!')

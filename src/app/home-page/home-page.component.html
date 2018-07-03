@@ -1,5 +1,5 @@
 
-  
+  <div class="ban" *ngIf = "banMessage">Sorry, you have to login first!<button class="closebtn" (click)="turnOff(2)">x</button></div>
   <div class="container">
     
     <h2>Top 20 Cryptocurrencies By Market Capitalization</h2>
@@ -26,7 +26,7 @@
           <td>${{coin.volume| number:'.2'}}</td>
           <td [ngClass]="check(idx)">{{coin.change| number:'.4'}}%</td>
           <td>{{coin.circulating_supply| number}}</td>
-          <td class="buy" routerLink="coin-details/{{coin.shortName}}">Buy</td>
+          <td class="buy" (click) = "goToCoinScreen(coin.shortName)">Buy</td>
         </tr>
       </tbody> 
     </table>

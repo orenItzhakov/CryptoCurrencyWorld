@@ -29,21 +29,23 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(passport.initialize());
 
 passport.use(new LocalStrategy(
-  //    { passReqToCallback : true},
   function (username, password, done) {
-    Detail.find().exec()
+    Detail.find({ username: username }).exec()
       .then(details => {
-        for (var i = 0; i < details.length; i++) {
-          if (username === details[i].username) {
-            bcrypt.compare(password, details[i].password, (err, result) => {
-              if (result) {
-                return done(null, { userID: details[i].user_id });
-              } else {
-                return done(null, false);
-              }
-
-            })
-          }
+        if (details.length) {
+          bcrypt.compare(password, details[0].password, (err, result) => {
+            if (err) {
+              console.log("error");
+              return;
+            }
+            else if (result) {
+              return done(null, { userID: details[0].user_id, status : true});
+            } else {
+              return done(null, {status : false});
+            }
+          })
+        } else {
+          return done(null, {status : false});
         }
       })
   }
@@ -52,7 +54,6 @@ passport.use(new LocalStrategy(
 app.post('/login', passport.authenticate('local', { session: false }),
   (req, res) => {
     let token = jwt.sign(req.user, 'thisIsTopSecret', { expiresIn: '7d' });
-    console.log(req.user)
     res.send({ token, ID: req.user });
   });
 

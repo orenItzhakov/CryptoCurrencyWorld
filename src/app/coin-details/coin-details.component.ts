@@ -33,7 +33,6 @@ export class CoinDetailsComponent implements OnInit {
       this.coinsService.get();
       setInterval(()=>{ 
         this.coinsService.getCoin(params.shortName);
-        console.log("Get coin");
        }, 5000);
     });
 

@@ -4,10 +4,10 @@
 
     <ul>
         <li routerLink="/" [ngClass]="{'curPage': router.url == '/'}">Home</li>
-        <li (click) = "goToProfile()">My portfolio</li>
-        <li (click) = "openLoginDialog()">Login</li>
-        <li (click) = "logout()">Logout</li>
-        <li (click) = "openSignUpDialog()">SignUp</li>
+        <li (click)="goToProfile()">My portfolio</li>
+        <li (click)="openLoginDialog()">Login</li>
+        <li (click)="logout()">Logout</li>
+        <li (click)="openSignUpDialog()">SignUp</li>
         <li>
             <span class="cart" (click)="cartShow()">
                 <i class="material-icons">shopping_cart</i> My Cart</span>
@@ -17,5 +17,9 @@
             </div>
         </li>
     </ul>
+    <div class="logout" *ngIf = "logoutMessage">See you soon !!<button class="closebtn" (click)="turnOff(1)">x</button></div>
+    <div class="ban" *ngIf = "banMessage">Sorry, you have to login first!<button class="closebtn" (click)="turnOff(2)">x</button></div>
+    <div class="login" *ngIf = "loginMessage">Hi, {{user.firstName}}<button class="closebtn" (click)="turnOff(3)">x</button></div>
+    <div class="welcome" *ngIf = "welcomeMessage">Welcome to CryptoCurrency World !!<button class="closebtn" (click)="turnOff(4)">x</button></div>
 
 </div>

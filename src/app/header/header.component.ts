@@ -18,6 +18,10 @@ export class HeaderComponent implements OnInit {
   calcCoins: number = 0;
   currentUserID: String;
   access_token: String;
+  logoutMessage: boolean = false;
+  banMessage: boolean = false;
+  loginMessage: boolean = false;
+  welcomeMessage: boolean = false;
   constructor(private authService: AuthService, private router: Router, private userService: UserService, public dialog: MatDialog) { }
 
   ngOnInit() {
@@ -34,16 +38,30 @@ export class HeaderComponent implements OnInit {
   }
   logout() {
     if (this.currentUserID) {
+      this.banMessage = false;
+      this.loginMessage = false;
+      this.welcomeMessage = false;
+      this.logoutMessage = true;
       localStorage.removeItem('user');
+      this.user = undefined;
       this.currentUserID = '';
-      alert('See you soon !!');
       this.router.navigate(['']);
     }
   }
+
+  turnOff(kind) {
+    switch (kind) {
+      case 1: this.logoutMessage = false;
+      case 2: this.banMessage = false;
+      case 3: this.loginMessage = false;
+      case 4: this.welcomeMessage = false;
+    }
+  }
+
   openLoginDialog(): void {
     let dialogRef = this.dialog.open(LoginComponent, {
       width: '400px',
-      height: '500px'
+      height: '600px'
     });
     dialogRef.afterClosed().subscribe(result => {
       if (result == undefined) {
@@ -56,11 +74,13 @@ export class HeaderComponent implements OnInit {
             this.currentUserID = JSON.parse(localStorage.getItem('user')).ID.userID;
             this.userService.get(this.currentUserID);
             this.userService.userObservable.subscribe((data) => {
+              this.banMessage = false;
+              this.loginMessage = true;
               this.user = data;
               this.calcAllCoins();
             })
           } else {
-            alert('User name or password is not correct')
+
           }
         })
       }
@@ -80,11 +100,15 @@ export class HeaderComponent implements OnInit {
       }
       else {
         this.userService.addUser(result.newUser, result.details);
-        this.userService.get(this.currentUserID);
-        this.userService.userObservable.subscribe((data) => {
-          this.user = data;
-          this.calcAllCoins();
-        })
+        if (this.currentUserID) {
+          this.currentUserID = this.userService.user._id;
+          this.userService.get(this.currentUserID);
+          this.userService.userObservable.subscribe((data) => {
+            this.welcomeMessage = true;
+            this.user = data;
+            this.calcAllCoins();
+          })
+        }
       }
     });
 
@@ -93,11 +117,12 @@ export class HeaderComponent implements OnInit {
   goToProfile() {
 
     if (JSON.parse(localStorage.getItem('user'))) {
-      this.currentUserID = this.authService.current_user;
+      this.loginMessage = false;
+      this.currentUserID = JSON.parse(localStorage.getItem('user')).ID.userID;
       this.router.navigate(['/myPortfolio/', this.currentUserID]);
     }
     else {
-      alert('Sorry. Log in first !!')
+      this.banMessage = true;
     }
   }
 

@@ -23,12 +23,15 @@ export class AuthService {
       username: usern,
       password: pass
     }
-    return this.http.post<Token>('/login', user).subscribe((data) => {
-      console.log(data);
-      localStorage.setItem('user', JSON.stringify(data));
-      this.current_user = JSON.parse(localStorage.getItem('user')).ID.userID;
-      this.userSubject.next(JSON.parse(localStorage.getItem('user')))
-      alert('Welcome Back !!!');
+    this.http.post<any>('/login', user).subscribe((data) => {
+      if (JSON.parse(JSON.stringify(data)).ID.status) {
+        localStorage.setItem('user', JSON.stringify(data));
+        this.current_user = JSON.parse(localStorage.getItem('user')).ID.userID;
+        this.userSubject.next(JSON.parse(localStorage.getItem('user')))
+      }
+      else {
+        alert('User name or password is not correct')
+      }
       this.router.navigate(['']);
     });
   }
