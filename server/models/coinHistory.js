@@ -1,19 +1,22 @@
 const mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
-const coinHistoryPriceTimeSchema = mongoose.Schema({
+
+const coinHistoryDataSchema = new mongoose.Schema({
+    // _id: Schema.Types.ObjectId,
     price: Number,
     date: Number,  // Unix time
-    coinHistory: {type: Schema.Types.ObjectId, ref: 'coinHistory'},
+    // coinHistory: {type: Schema.Types.ObjectId, ref: 'CoinHistory'},
 });
 
-mongoose.model('coinHistoryPriceTime', coinHistoryPriceTimeSchema);
-
-const coinHistorySchema = mongoose.Schema({
+const coinHistorySchema = new mongoose.Schema({
+    // _id: Schema.Types.ObjectId,
     name : String,
     shortName : String,
-    coinHistoryPriceTime: [{type: Schema.Types.ObjectId, ref: 'coinHistoryPriceTime'}]
+    // coinHistoryData: [{type: Schema.Types.ObjectId, ref: 'coinHistoryData'}]
+    coinHistoryData: [coinHistoryDataSchema]
 });
 
-let coinHistory = mongoose.model('coinHistory', coinHistorySchema);
-module.exports = coinHistory;
+
+module.exports = mongoose.model('coinHistory', coinHistorySchema, 'coinHistory');
+
