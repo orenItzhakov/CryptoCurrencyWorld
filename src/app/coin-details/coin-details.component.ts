@@ -14,9 +14,10 @@ export class CoinDetailsComponent implements OnInit {
   coin : Coin;
   valueUSD : number;
   valueCoin : number = 1;
+  myInterval : any;
   flag :boolean ;
   constructor( private route : ActivatedRoute , private coinsService : CoinsService, private userService : UserService,public snackBar: MatSnackBar) {
-    this.flag = false;
+    this.flag = true;
   }
 
   ngOnInit() {
@@ -27,15 +28,14 @@ export class CoinDetailsComponent implements OnInit {
       });
 
       this.coinsService.coinsObservable.subscribe(()=>{
-        this.coinsService.getCoin(params.shortName);
+        if(this.flag) this.coinsService.getCoin(params.shortName);
+        this.flag = false;
       });
 
       this.coinsService.get();
     });
   }
-
   ngOnDestroy(){
-    this.flag = true; //stop the Interval
   }
 
   toCoin(){

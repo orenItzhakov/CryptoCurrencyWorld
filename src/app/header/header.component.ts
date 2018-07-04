@@ -7,6 +7,7 @@ import { LoginComponent } from '../login/login.component'
 import { AuthService } from '../auth.service'
 import { SignupComponent } from '../signup/signup.component'
 import { FormControl } from '@angular/forms';
+import { CoinsService } from '../coins.service';
 
 @Component({
   selector: 'app-header',
@@ -17,10 +18,10 @@ export class HeaderComponent implements OnInit {
   position = new FormControl('left');
   show: boolean = false;
   user: User;
-  calcCoins: number = 0;
+  calcCoins: number;
   currentUserID: String;
   access_token: String;
-  constructor(private authService: AuthService, private router: Router, private userService: UserService, public dialog: MatDialog) { }
+  constructor(private authService: AuthService, private router: Router, private userService: UserService, public coinsService :CoinsService) { }
 
   ngOnInit() {
     this.currentUserID = JSON.parse(localStorage.getItem('user')).ID.userID;
@@ -37,8 +38,9 @@ export class HeaderComponent implements OnInit {
   }
 
   calcAllCoins() {
+    this.calcCoins = 0;
     for (let i = 0; i < this.user.coins.length; i++) {
-      if (this.user.coins[i].isActive) this.calcCoins += this.user.coins[i].currentPrice;
+      if (this.user.coins[i].isActive) this.calcCoins += this.priceNow(this.user.coins[i].name,this.user.coins[i].amount);
     }
   }
   logout() {
@@ -49,61 +51,14 @@ export class HeaderComponent implements OnInit {
       window.location.href = '/login';
     }
   }
-  // openLoginDialog(): void {
-  //   let dialogRef = this.dialog.open(LoginComponent, {
-  //     width: '400px',
-  //     height: '600px'
-  //   });
-  //   dialogRef.afterClosed().subscribe(result => {
-  //     if (result == undefined) {
-  //       console.log('no entry!!')
-  //     }
-  //     else {
-  //       this.authService.login(result.username, result.password);
-  //       this.authService.userUpdate.subscribe(check => {
-  //         if (check) {
-  //           this.currentUserID = JSON.parse(localStorage.getItem('user')).ID.userID;
-  //           this.userService.get(this.currentUserID);
-  //           this.userService.userObservable.subscribe((data) => {
-  //             this.banMessage = false;
-  //             this.loginMessage = true;
-  //             this.user = data;
-  //             this.calcAllCoins();
-  //           })
-  //         } else {
 
-  //         }
-  //       })
-  //     }
-  //   });
-
-  // }
-
-  // openSignUpDialog(): void {
-  //   let dialogRef = this.dialog.open(SignupComponent, {
-  //     width: '400px',
-  //     height: '500px',
-  //     data: {}
-  //   });
-  //   dialogRef.afterClosed().subscribe(result => {
-  //     if (result == undefined) {
-  //       console.log('no entry!!')
-  //     }
-  //     else {
-  //       this.userService.addUser(result.newUser, result.details);
-  //       if (this.currentUserID) {
-  //         this.currentUserID = this.userService.user._id;
-  //         this.userService.get(this.currentUserID);
-  //         this.userService.userObservable.subscribe((data) => {
-  //           this.welcomeMessage = true;
-  //           this.user = data;
-  //           this.calcAllCoins();
-  //         })
-  //       }
-  //     }
-  //   });
-
-  // }
+  priceNow(name: string, amount: number) {
+    for (let i = 0; i < this.coinsService.coins.length; i++) {
+      if (name == this.coinsService.coins[i].name) {
+        return amount * this.coinsService.coins[i].price;
+      }
+    }
+  }
 
   goToProfile() {
 
