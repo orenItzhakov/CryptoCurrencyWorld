@@ -15,9 +15,9 @@ export class CoinDetailsComponent implements OnInit {
   valueUSD : number;
   valueCoin : number = 1;
   myInterval : any;
-  flag :boolean = false ;
+  flag :boolean ;
   constructor( private route : ActivatedRoute , private coinsService : CoinsService, private userService : UserService,public snackBar: MatSnackBar) {
-    
+    this.flag = false;
   }
 
   ngOnInit() {

@@ -109,15 +109,13 @@ router.post('/addDetail', (req, res) => {
         .then(usersDetail => {
             for (var i = 0; i < usersDetail.length; i++) {
                 if (usersDetail[i].username == userDetail.username) {
-                    console.log("something error");
-                    res.send({ user: usersDetail[i], status: false });
                     User.deleteOne({ _id: ID }, function (err) {
                         if (err) console.log(err);
                     })
+                    res.send({ status: false });
                     return;
                 }
             }
-            console.log("kan" + userDetail.password);
             bcrypt.hash(userDetail.password, 10, (err, hash) => {
                 if (err) console.log(err);
                 else {
