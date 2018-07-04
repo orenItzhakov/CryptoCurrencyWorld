@@ -43,7 +43,6 @@
           <th>Amount</th>
           <th>Selling Value</th>
           <th>Date</th>
-          <th>Options</th>
         </tr>
       </thead>
       <tbody>
@@ -53,7 +52,6 @@
           <td *ngIf="!coin.isActive">{{coin.amount| number}}</td>
           <td *ngIf="!coin.isActive">{{coin.currentPrice| number}}$</td>
           <td *ngIf="!coin.isActive">{{coin.Date | date: 'medium'}}</td>
-          <td *ngIf="!coin.isActive">&nbsp;</td>
         </tr>
         <tr *ngIf="checkTable2()">
           <td colspan="6">No old coins</td>

@@ -65,14 +65,19 @@ router.post('/sell', (req, res) => {
         .then(trans => {
             User.find({ _id: userID }).populate('coins').exec()
                 .then(user => {
-                    user[0].balance += trans[0].currentPrice;
-                    trans[0].isActive = false;
-                    trans[0].save();
-                    user[0].save().then(function () {
-                        User.find({ _id: userID }).populate('coins').exec().then(user => {
-                            res.send(JSON.stringify(user));
+                    Coin.find({ name: trans[0].name }).exec()
+                        .then(coin => {
+                            console.log(user[0])
+                            console.log(coin);
+                            user[0].balance += trans[0].amount*coin[0].price;
+                            trans[0].isActive = false;
+                            trans[0].save();
+                            user[0].save().then(function () {
+                                User.find({ _id: userID }).populate('coins').exec().then(user => {
+                                    res.send(JSON.stringify(user));
+                                });
+                            })
                         });
-                    });
                 });
         })
 })

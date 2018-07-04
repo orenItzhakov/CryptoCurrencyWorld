@@ -31,7 +31,6 @@ setInterval(function () {
     cryptoArray.forEach((el)=>{
         request(`https://min-api.cryptocompare.com/data/histoday?fsym=${el}&tsym=USD&limit=200`, function (error, response, body) {
             let obj = JSON.parse(body)
-            console.log(obj);
             let dataArray = obj.Data
             // console.log(dataArray)
             
@@ -41,7 +40,6 @@ setInterval(function () {
 
                 CoinHistory.findOneAndUpdate({shortName:el},{ $set: { coinHistoryData: newResult }},{ "new": true, "upsert": true },
                 function(err, result1) {
-                    console.log(result1)
                 // if (err) throw err;
                 // else res.send(result1);
               });})
