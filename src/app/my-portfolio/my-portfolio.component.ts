@@ -42,7 +42,6 @@ export class MyPortfolioComponent implements OnInit {
 
   sell(id: string) {
     this.userService.sellCoin(id);
-    this.userService.get(this.user._id);
     this.userService.userObservable.subscribe((data) => {
       this.user = data;
     })

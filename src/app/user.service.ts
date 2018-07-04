@@ -40,6 +40,7 @@ export class UserService {
 
   addCoin(amount,usd,name){
     this.http.post<User>('/user/buy',{amount:amount ,usd:usd, coin:name,id:this.user._id}).subscribe(user => {
+      console.log(user);
       this.user = user[0];
       this.userSubject.next(this.user); //update the observable
     });
@@ -47,6 +48,7 @@ export class UserService {
 
   sellCoin(id: string) {
     this.http.post<User>('/user/sell', { user: this.user._id, coin: id }).subscribe(user => {
+      console.log(user);
       this.user = user[0];
       this.userSubject.next(this.user); //update the observable
     });

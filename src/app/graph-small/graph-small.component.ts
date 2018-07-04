@@ -26,7 +26,6 @@ results7day:any;
     // console.log(this.timeArray)
 
       this.results7day.forEach(element=>{this.priceArray.push(element.price)})
-      console.log(this.priceArray)
       let ctx = (<HTMLCanvasElement> document.getElementById(this.shortName)).getContext('2d')
       Chart.defaults.scale.gridLines.display = false;
     

@@ -14,7 +14,6 @@ export class CoinDetailsComponent implements OnInit {
   coin : Coin;
   valueUSD : number;
   valueCoin : number = 1;
-  myInterval : any;
   flag :boolean ;
   constructor( private route : ActivatedRoute , private coinsService : CoinsService, private userService : UserService,public snackBar: MatSnackBar) {
     this.flag = false;
@@ -32,12 +31,6 @@ export class CoinDetailsComponent implements OnInit {
       });
 
       this.coinsService.get();
-      this.myInterval = setInterval(()=>{ 
-        this.coinsService.getCoin(params.shortName);
-        if(this.flag) clearInterval(this.myInterval);
-        console.log("Get coin");
-      }, 5000);
-
     });
   }
 

@@ -26,7 +26,6 @@ export class HomePageComponent implements OnInit {
     this.myInterval = setInterval(()=>{ 
       this.coinsService.get();
       if(this.flag) clearInterval(this.myInterval);
-      console.log("Get coins");
      }, 10000);
   }
 
