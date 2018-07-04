@@ -23,8 +23,8 @@ export class MyPortfolioComponent implements OnInit {
       this.userService.userObservable.subscribe((data) => {
         this.user = data;
       })
-  })
-}
+    })
+  }
 
   checkTable() {
     for (let i = 0; i < this.user.coins.length; i++) {
@@ -42,6 +42,10 @@ export class MyPortfolioComponent implements OnInit {
 
   sell(id: string) {
     this.userService.sellCoin(id);
+    this.userService.get(this.user._id);
+    this.userService.userObservable.subscribe((data) => {
+      this.user = data;
+    })
   }
 
   priceNow(name: string, amount: number) {
