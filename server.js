@@ -13,7 +13,6 @@ let authenticate = expressJwt({ secret: 'thisIsTopSecret' });
 const Detail = require('./server/models/detail');
 const User = require('./server/models/user');
 const bcrypt = require('bcrypt');
-
 const userRoutes = require('./server/routes/userApi');
 const coinRoutes = require('./server/routes/coinApi');
 const coinHistoryRoutes = require('./server/routes/coinHistoryApi');
@@ -40,23 +39,23 @@ passport.use(new LocalStrategy(
               return;
             }
             else if (result) {
-              return done(null, { userID: details[0].user_id, status : true});
+              return done(null, { userID: details[0].user_id, status: true });
             } else {
-              return done(null, {status : false});
+              return done(null, { status: false });
             }
           })
         } else {
-          return done(null, {status : false});
+          return done(null, { status: false });
         }
       })
   }
 ));
 
-app.post('/login', passport.authenticate('local', { session: false }),
-  (req, res) => {
-    let token = jwt.sign(req.user, 'thisIsTopSecret', { expiresIn: '7d' });
-    res.send({ token, ID: req.user });
-  });
+app.post('/login', passport.authenticate('local', { session: false }), (req, res) => {
+  let token = jwt.sign(req.user, 'thisIsTopSecret');
+  res.send({ token, ID: req.user });
+  //res.sendFile(path.join(__dirname, '/dist/CryptoCurrencyWorld/index.html?token='+token+'&ID='+req.user));
+});
 
 // Point static path to dist
 app.use(express.static(path.join(__dirname, 'dist/CryptoCurrencyWorld')));
@@ -70,8 +69,13 @@ app.use('/coinHistory', coinHistoryRoutes);
 // app.use('/comments', commentsRoutes);
 
 // Catch all other routes and return the index file
+
 app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, 'dist/CryptoCurrencyWorld/index.html'));
+  res.sendFile(path.join(__dirname, 'src/login.html'));
+});
+
+app.get('/login', (req, res) => {
+  res.sendFile(path.join(__dirname, 'src/login.html'));
 });
 
 /**

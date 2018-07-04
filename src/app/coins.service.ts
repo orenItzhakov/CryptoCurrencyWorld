@@ -41,9 +41,20 @@ export class CoinsService {
     this.coinSubject.next(this.coin); //update the observable
   }
 
+  getCoinByName(name : string){
+    this.coin = this.findCoinByName(name);
+    this.coinSubject.next(this.coin); //update the observable
+  }
+
   findCoin(shortName : string): Coin {
     for (let i = 0; i < this.coins.length; i++) {
       if(this.coins[i].shortName == shortName) return this.coins[i];
+    }
+  }
+
+  findCoinByName(name : string): Coin {
+    for (let i = 0; i < this.coins.length; i++) {
+      if(this.coins[i].name == name) return this.coins[i];
     }
   }
 

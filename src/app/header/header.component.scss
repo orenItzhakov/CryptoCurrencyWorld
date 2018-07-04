@@ -56,55 +56,37 @@ ul{
         border: 2px solid #00cf70;
         background-color: #0f1d2af0;
         color: #ffffff;
-        padding: 18px;
+        padding: 28px 18px 18px;
         position: absolute;
         right: 0px;
         width: 320px;
-        bottom: -120px;
+        bottom: -130px;
         border-radius: 8px;
         p {
             margin: 0px;
             padding: 0px;
             line-height: 30px;
         }
+        span{
+            position: absolute;
+            right: 14px;
+            font-weight: bold;
+            top: 10px;
+            line-height: 21px;
+            i{
+                vertical-align: sub;
+            }
+        }
     }
-}
-
-.logout {
-    padding: 20px;
-    background-color: #2196F3;
-    color: rgb(0, 0, 0);
-    display: table;
-}
-.login {
-    padding: 20px;
-    background-color: #00cf70;
-    color: rgb(0, 0, 0);
-    display: table;
-}
-.welcome {
-    padding: 20px;
-    background-color: #12df35;
-    color: rgb(0, 0, 0);
-    display: table;
-}
-.ban {
-    padding: 20px;
-    background-color: #dcdf12;
-    color: rgb(0, 0, 0);
-    display: table;
-}
-.closebtn {
-    margin-left: 15px;
-    color: white;
-    font-weight: bold;
-    float: right;
-    font-size: 22px;
-    line-height: 20px;
-    cursor: pointer;
-    transition: 0.3s;
-}
-
-.closebtn:hover {
-    color: black;
+    .logout{
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        margin: 0;
+        padding: 0px;
+        line-height: inherit;
+        i{
+            font-size: 25px!important;
+        }
+    }
 }

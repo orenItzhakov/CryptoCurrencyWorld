@@ -10,7 +10,7 @@ export class AuthInterceptor implements HttpInterceptor {
     intercept(req: HttpRequest<any>,
         next: HttpHandler): Observable<HttpEvent<any>> {
 
-        const idToken = JSON.parse(localStorage.getItem("user"));
+        const idToken = JSON.parse(localStorage.getItem("user")).token;
 
         if (idToken) {
             const cloned = req.clone({

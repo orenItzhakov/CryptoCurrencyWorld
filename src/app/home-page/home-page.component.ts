@@ -35,9 +35,9 @@ export class HomePageComponent implements OnInit {
   }
 
   check(id){
-    if(this.coins[id].change == this.coinsService.coinsOld[id].change) return "";
-    else if(this.coins[id].change > this.coinsService.coinsOld[id].change) return "green";
-    else return "red";
+    if(this.coins[id].change < 0) return "red";
+    else if(this.coins[id].change > 0) return "green";
+    else return "";
   }
 
   turnOff(kind) {
@@ -54,9 +54,6 @@ export class HomePageComponent implements OnInit {
     if (JSON.parse(localStorage.getItem('user'))) {
       this.router.navigate(['/coin-details/', coin]);
     }
-    else {
-      this.banMessage = true;
-    }
   }
 
   
@@ -67,8 +64,5 @@ export class HomePageComponent implements OnInit {
       return -1;
     return 0;
   }
-
-  
-
   
 }

@@ -27,9 +27,11 @@ let cryptoArray = [ "BTC","ETH","XRP","EOS","LTC","XLM","ADA","USDT","IOT","TRX"
 // TODO: loop thru cryptoArray, and launch request for each crypto
 let newResult=[]
 setInterval(function () {
+
     cryptoArray.forEach((el)=>{
         request(`https://min-api.cryptocompare.com/data/histoday?fsym=${el}&tsym=USD&limit=200`, function (error, response, body) {
             let obj = JSON.parse(body)
+            console.log(obj);
             let dataArray = obj.Data
             // console.log(dataArray)
             
@@ -58,7 +60,6 @@ request('https://min-api.cryptocompare.com/data/pricemultifull?fsyms=BTC,ETH,XRP
     obj = Object.values(obj);
     let objn = Object.values(obj);
     let objnw = Object.values(objn[0]);
-    //console.log(objnw[0].USD);
 
         Coin.find().exec()
             .then(coins => {
@@ -78,7 +79,7 @@ request('https://min-api.cryptocompare.com/data/pricemultifull?fsyms=BTC,ETH,XRP
                                 change: objnw[j].USD.CHANGEPCT24HOUR,
                                 circulating_supply: objnw[j].USD.SUPPLY
                             };
-                            Coin.update({ _id: id }, newCoin, { multi: false }, function (err, resp) { // we ned to figure out how to make the changes of all field of the form, not just the name.
+                            Coin.update({ _id: id }, newCoin, { multi: false }, function (err, resp) { 
                                 if (err) throw err;        
                                 // console.log(newCoin.price);
                             });
