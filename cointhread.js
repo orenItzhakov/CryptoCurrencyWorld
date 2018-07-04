@@ -22,35 +22,35 @@ db.on('error', console.error.bind(console, 'connection error:'));
 
 let  dayInMilliseconds = 1000 * 60 * 60 * 24;
 
-let cryptoArray = [ "BTC","ETH","XRP","BCH","EOS","LTC","XLM","ADA","USDT","IOT","TRX","XMR","NEO","DASH","BNB","ETC","VEN","XEM","ONT","QTUM" ] 
+let cryptoArray = [ "BTC","ETH","XRP","EOS","LTC","XLM","ADA","USDT","IOT","TRX","XMR","NEO","DASH","BNB","ETC","VEN","XEM","QTUM" ] 
 
 // TODO: loop thru cryptoArray, and launch request for each crypto
+let newResult=[]
+setInterval(function () {
 
     cryptoArray.forEach((el)=>{
-        request(`https://min-api.cryptocompare.com/data/histoday?fsym=${el}&tsym=USD&limit=365`, function (error, response, body) {
+        request(`https://min-api.cryptocompare.com/data/histoday?fsym=${el}&tsym=USD&limit=200`, function (error, response, body) {
             let obj = JSON.parse(body)
             console.log(obj);
             let dataArray = obj.Data
             // console.log(dataArray)
-            let newResult=[]
+            
             dataArray.forEach((e)=>{
                 newResult.push({price: e.close, date:e.time})
+                // ,{ "new": true, "upsert": true }
 
-                CoinHistory.findOneAndUpdate({shortName:el},{ $set: { coinHistoryData: newResult }},{ "new": true, "upsert": true }, 
+                CoinHistory.findOneAndUpdate({shortName:el},{ $set: { coinHistoryData: newResult }},{ "new": true, "upsert": true },
                 function(err, result1) {
                     console.log(result1)
                 // if (err) throw err;
                 // else res.send(result1);
               });})
-                
-                newResult =[]
-        
+                newResult.length=0;
                 });
 
             })
 
-
-
+        },15000)
 
 
 
@@ -79,9 +79,9 @@ request('https://min-api.cryptocompare.com/data/pricemultifull?fsyms=BTC,ETH,XRP
                                 change: objnw[j].USD.CHANGEPCT24HOUR,
                                 circulating_supply: objnw[j].USD.SUPPLY
                             };
-                            Coin.update({ _id: id }, newCoin, { multi: false }, function (err, resp) { // we ned to figure out how to make the changes of all field of the form, not just the name.
+                            Coin.update({ _id: id }, newCoin, { multi: false }, function (err, resp) { 
                                 if (err) throw err;        
-                                console.log(newCoin.price);
+                                // console.log(newCoin.price);
                             });
                         }
                     }
