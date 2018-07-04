@@ -259,21 +259,21 @@
 
           <label class="form-input">
             <i class="material-icons">create</i>
-            <input type="text" required  class="lastName" />
+            <input type="text" required class="lastName" />
             <span class="label">Last name</span>
             <span class="underline"></span>
           </label>
 
           <label class="form-input">
             <i class="material-icons">create</i>
-            <input type="text" required  class="newUsername" />
+            <input type="text" required class="newUsername" />
             <span class="label">Username</span>
             <span class="underline"></span>
           </label>
 
           <label class="form-input">
             <i class="material-icons">create</i>
-            <input type="text" required  class="Email" />
+            <input type="text" required class="Email" />
             <span class="label">Email</span>
             <span class="underline"></span>
           </label>
@@ -327,6 +327,7 @@
         var email = $(".Email").val();
         var firstName = $(".firstName").val();
         var lastName = $(".lastName").val();
+        var flag = false;
         var user = {
           firstName: firstName,
           lastName: lastName,
@@ -336,41 +337,45 @@
           username: username,
           password: password
         }
-        console.log('here'+user);
-        $.post("/user/add",
-          user,
-          function (data) {
-            console.log(data);
-            if (data.status) {
-              details.ID = data.user._id;
-              console.log('now here:' + details.ID);
-              $.post("/user/addDetail",
+        if (username && password && email && firstName && lastName) {
+          flag = true;
+        }
+        if (flag) {
+          $.post("/user/add",
+            user,
+            function (data) {
+              if (data.status) {
+                details.ID = data.user._id;
+                $.post("/user/addDetail",
                   details, function (result) {
-                  console.log('here we are : ' + result);
-                  if (result.status) {
-                    alert('Welcome to the CryptoCurrenncy World, ' + result.user[0].firstName + ' !!');
-                    $.post("/login",
-                      {
-                        username: username,
-                        password: password
-                      },
-                      function (data) {
-                        if (data.ID.status) {
-                          localStorage.setItem("user", JSON.stringify(data));
-                          window.location = "/";
-                        }
-                      });
-                  } else {
-                    alert('User Name exists !!')
-                  }
-                })
-            }
-            else {
-              alert('Email exists !!')
-            }
+                    if (result.status) {
+                      alert('Welcome to the CryptoCurrenncy World, ' + result.user[0].firstName + ' !!');
+                      $.post("/login",
+                        {
+                          username: username,
+                          password: password
+                        },
+                        function (data) {
+                          if (data.ID.status) {
+                            localStorage.setItem("user", JSON.stringify(data));
+                            window.location = "/";
+                          }
+                        });
+                    } else {
+                      alert('User Name exists !!')
+                    }
+                  })
+              }
+              else {
+                alert('Email exists !!')
+              }
 
-          });
-      });
+            });
+        } else {
+          alert('Please fill all the fields !');
+        }
+
+      })
     })
   </script>
 </body>
