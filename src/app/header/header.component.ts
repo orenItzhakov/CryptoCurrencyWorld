@@ -6,7 +6,7 @@ import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { LoginComponent } from '../login/login.component'
 import { AuthService } from '../auth.service'
 import { SignupComponent } from '../signup/signup.component'
-import { CoinsService } from '../coins.service';
+import { FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-header',
@@ -14,12 +14,13 @@ import { CoinsService } from '../coins.service';
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
+  position = new FormControl('left');
   show: boolean = false;
   user: User;
   calcCoins: number = 0;
   currentUserID: String;
   access_token: String;
-  constructor(private authService: AuthService, private router: Router, private userService: UserService, public dialog: MatDialog, private coinService : CoinsService) { }
+  constructor(private authService: AuthService, private router: Router, private userService: UserService, public dialog: MatDialog) { }
 
   ngOnInit() {
     this.currentUserID = JSON.parse(localStorage.getItem('user')).ID.userID;
@@ -113,10 +114,3 @@ export class HeaderComponent implements OnInit {
   }
 
 }
-
-// {
-//   this.coinService.getCoinByName(this.user.coins[i].name);
-//   this.coinService.coinObservable.subscribe((data) => {
-//     this.calcCoins += data.price*this.user.coins[i].amount;
-//   })
-// }

@@ -24,8 +24,7 @@ export class CoinDetailsComponent implements OnInit {
     this.route.params.subscribe(params => {
       this.coinsService.coinObservable.subscribe((data)=>{
         this.coin = data;
-        
-        if( !this.valueUSD ) this.valueUSD = this.coin.price;
+        this.valueUSD = this.coin.price;
       });
 
       this.coinsService.coinsObservable.subscribe(()=>{

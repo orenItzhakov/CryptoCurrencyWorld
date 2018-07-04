@@ -209,7 +209,9 @@
       margin: 0px;
       padding: 0px;
     }
-
+    .part_b .register {
+      bottom: 20px!important;
+    }
     .father .register span:hover {
       text-shadow: 0 0 1px white;
     }
@@ -285,7 +287,10 @@
             <div class="underline"></div>
           </label>
 
-          <button class="onCloseOk" mat-raised-button>REGISTER</button>
+          <button class="btn onCloseOk" mat-raised-button>REGISTER</button>
+          <p class="register">
+            <span onclick="add()">LOGIN</span>
+          </p>
         </div>
       </div>
     </div>
@@ -301,15 +306,14 @@
       document.getElementById("part_a").classList.toggle("moveUp");
     };
 
-    $(document).ready(function () {
-      $(".ajaxCall").click(function () {
-        var username = $(".username").val();
-        var password = $(".password").val();
-        $.post("/login",
-          {
-            username: username,
-            password: password
-          },
+    var ajax = function(){
+      var username = $(".username").val();
+      var password = $(".password").val();
+      if(username=="" || password==""){
+        alert("You must fill all the fields")
+      }
+      else{
+        $.post("/login",{username: username,password: password},
           function (data) {
             if (data.ID.status) {
               localStorage.setItem("user", JSON.stringify(data));
@@ -318,9 +322,22 @@
             else {
               alert('User name or password is not correct')
             }
+        });
+      }
+    }
 
-          });
+    $(document).ready(function () {
+
+      $(".ajaxCall").click(function () {
+        ajax();
       });
+
+      $(".username , .password").keyup(function(event) {
+          if (event.keyCode === 13) {
+            ajax();
+          }
+      });
+
       $(".onCloseOk").click(function () {
         var username = $(".newUsername").val();
         var password = $(".newPassword").val();

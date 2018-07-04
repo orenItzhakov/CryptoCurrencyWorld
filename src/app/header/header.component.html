@@ -5,19 +5,19 @@
     <ul>
         <li routerLink="/" [ngClass]="{'curPage': router.url == '/'}">Home</li>
         <li (click)="goToProfile()">My portfolio</li>
-        <!-- <li (click)="openLoginDialog()">Login</li> -->
-        <li (click)="logout()">Logout</li>
-        <!-- <li (click)="openSignUpDialog()">SignUp</li> -->
         <li routerLink="/portfolios" [ngClass]="{'curPage': router.url == '/portfolios'}">Portfolios</li>
+        <!-- <li *ngIf="user">Welcome, {{ user.firstName }}</li> -->
         <li>
             <span class="cart" (click)="cartShow()">
-                <i class="material-icons">shopping_cart</i> My Cart</span>
+                <i class="material-icons">shopping_cart</i> My Cart
+            </span>
             <div class="open" *ngIf="show && user">
                 <p>Balance: ${{user.balance| number}}</p>
                 <p>Crypto portfolio: ${{calcCoins| number}}</p>
+                <span><i class="material-icons">person</i> {{ user.firstName + " " + user.lastName}}</span>
             </div>
         </li>
-        <li>Welcome, {{ user.firstName }}</li>
+        <li (click)="logout()" class="logout"><i matTooltip="Logout" [matTooltipPosition]="position.value" class="material-icons">exit_to_app</i></li>
     </ul>
 
 </div>
