@@ -26,7 +26,7 @@ results7day:any;
     // console.log(this.timeArray)
 
       this.results7day.forEach(element=>{this.priceArray.push(element.price)})
-      console.log(this.priceArray)
+    //   console.log(this.priceArray)
       let ctx = (<HTMLCanvasElement> document.getElementById(this.shortName)).getContext('2d')
       Chart.defaults.scale.gridLines.display = false;
     
@@ -49,15 +49,16 @@ results7day:any;
       options:
        { animation:{
            duration:0,
+       }, legend:{
+           display:false
        },
            responsive: true,
          
           maintainAspectRatio: false,
           scales: {
               yAxes: [{
-              display:false},{ticks: {
-                beginAtZero:true
-            }}],
+              display:false}
+        ],
               xAxes:[{display:false}]
               
           }
