@@ -20,7 +20,7 @@ const coinHistoryRoutes = require('./server/routes/coinHistoryApi');
 
 const app = express();
 
-mongoose.connect('mongodb://CCW:Aiagm100p@ds219181.mlab.com:19181/crypto_currency_world');
+mongoose.connect(process.env.CONNECTION_STRING || 'mongodb://CCW:Aiagm100p@ds219181.mlab.com:19181/crypto_currency_world');
 
 // Parsers for POST data
 app.use(bodyParser.json());

@@ -10,7 +10,7 @@ const CoinHistory = require('./server/models/coinHistory');
 
 // mongoose.set('debug', true);
 
-mongoose.connect('mongodb://CCW:Aiagm100p@ds219181.mlab.com:19181/crypto_currency_world');
+mongoose.connect(process.env.CONNECTION_STRING || 'mongodb://CCW:Aiagm100p@ds219181.mlab.com:19181/crypto_currency_world');
 
 // mongoose.connect('mongodb://localhost/cryptoDB', function() {
 //   console.log("DB connection established!!!");
