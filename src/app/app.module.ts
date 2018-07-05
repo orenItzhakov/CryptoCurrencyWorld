@@ -17,7 +17,7 @@ import { GraphComponent } from './graph/graph.component';
 import { GraphSmallComponent } from './graph-small/graph-small.component';
 import { LoginComponent } from './login/login.component';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
-import { AuthInterceptor } from './AuthInterceptor'
+import { AuthInterceptor } from './authInterceptor'
 import { AuthService } from './auth.service';
 import {MatDialogModule} from '@angular/material/dialog';
 import {MatFormFieldModule} from '@angular/material/form-field';
