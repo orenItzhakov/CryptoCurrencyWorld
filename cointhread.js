@@ -78,7 +78,7 @@ request('https://min-api.cryptocompare.com/data/pricemultifull?fsyms=BTC,ETH,XRP
                                 circulating_supply: objnw[j].USD.SUPPLY
                             };
                             Coin.update({ _id: id }, newCoin, { multi: false }, function (err, resp) { 
-                                if (err) throw err;        
+                                //if (err) throw err;        
                                 // console.log(newCoin.price);
                             });
                         }
@@ -90,5 +90,5 @@ request('https://min-api.cryptocompare.com/data/pricemultifull?fsyms=BTC,ETH,XRP
 
     })
     
-    }, 10000);
+    }, 15000);
 

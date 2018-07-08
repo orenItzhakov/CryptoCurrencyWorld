@@ -66,7 +66,6 @@ app.use(express.static(path.join(__dirname, 'node_modules')));
 app.use('/user', userRoutes);
 app.use('/coins', coinRoutes);
 app.use('/coinHistory', coinHistoryRoutes);
-// app.use('/comments', commentsRoutes);
 
 // Catch all other routes and return the index file
 
