@@ -74,13 +74,12 @@ app.use('/coinHistory', coinHistoryRoutes);
 //   res.sendFile(path.join(__dirname, 'src/login.html'));
 // });
 
-app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, '/dist/CryptoCurrencyWorld/index.html'));
-});
-
-
 app.get('/login', (req, res) => {
   res.sendFile(path.join(__dirname, 'src/login.html'));
+});
+
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, '/dist/CryptoCurrencyWorld/index.html'));
 });
 
 /**
