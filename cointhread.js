@@ -10,7 +10,8 @@ const CoinHistory = require('./server/models/coinHistory');
 
 // mongoose.set('debug', true);
 
-mongoose.connect(process.env.CONNECTION_STRING);
+mongoose.connect('mongodb://CCW:Aiagm100p@ds219181.mlab.com:19181/crypto_currency_world');
+
 
 // mongoose.connect('mongodb://localhost/cryptoDB', function() {
 //   console.log("DB connection established!!!");
@@ -40,7 +41,8 @@ setInterval(function () {
 
                 CoinHistory.findOneAndUpdate({shortName:el},{ $set: { coinHistoryData: newResult }},{ "new": true, "upsert": true },
                 function(err, result1) {
-                // if (err) throw err;
+                if (err) console.log(err);
+                ;
                 // else res.send(result1);
               });})
                 newResult.length=0;
@@ -78,8 +80,8 @@ request('https://min-api.cryptocompare.com/data/pricemultifull?fsyms=BTC,ETH,XRP
                                 circulating_supply: objnw[j].USD.SUPPLY
                             };
                             Coin.update({ _id: id }, newCoin, { multi: false }, function (err, resp) { 
-                                //if (err) throw err;        
-                                // console.log(newCoin.price);
+                                if (err) console.log(err);        
+                                console.log(newCoin.price);
                             });
                         }
                     }

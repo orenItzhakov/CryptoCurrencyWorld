@@ -12,6 +12,9 @@ router.get('/', authenticate, (req, res) => {
     .then(coins => {
         res.send(JSON.stringify(coins));
     })
+    .catch(err => {
+        console.log(err);
+    })
 })
 
 module.exports = router

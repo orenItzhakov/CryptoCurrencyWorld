@@ -54,6 +54,10 @@ router.post('/buy', authenticate, (req, res) => {
                             res.send(JSON.stringify(user));
                         })
                 })
+                .catch(err => {
+                    console.log(err);
+
+                })
         })
         .catch(err => console.log('not here'));
 })
@@ -69,7 +73,7 @@ router.post('/sell', (req, res) => {
                         .then(coin => {
                             console.log(user[0])
                             console.log(coin);
-                            user[0].balance += trans[0].amount*coin[0].price;
+                            user[0].balance += trans[0].amount * coin[0].price;
                             trans[0].isActive = false;
                             trans[0].save();
                             user[0].save().then(function () {
