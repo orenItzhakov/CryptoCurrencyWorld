@@ -27,30 +27,30 @@ let cryptoArray = [ "BTC","ETH","XRP","EOS","LTC","XLM","ADA","USDT","IOT","TRX"
 
 // TODO: loop thru cryptoArray, and launch request for each crypto
 let newResult=[]
-setInterval(function () {
+// setInterval(function () {
 
-    cryptoArray.forEach((el)=>{
-        request(`https://min-api.cryptocompare.com/data/histoday?fsym=${el}&tsym=USD&limit=200`, function (error, response, body) {
-            let obj = JSON.parse(body)
-            let dataArray = obj.Data
-            // console.log(dataArray)
+//     cryptoArray.forEach((el)=>{
+//         request(`https://min-api.cryptocompare.com/data/histoday?fsym=${el}&tsym=USD&limit=200`, function (error, response, body) {
+//             let obj = JSON.parse(body)
+//             let dataArray = obj.Data
+//             // console.log(dataArray)
             
-            dataArray.forEach((e)=>{
-                newResult.push({price: e.close, date:e.time})
-                // ,{ "new": true, "upsert": true }
+//             dataArray.forEach((e)=>{
+//                 newResult.push({price: e.close, date:e.time})
+//                 // ,{ "new": true, "upsert": true }
 
-                CoinHistory.findOneAndUpdate({shortName:el},{ $set: { coinHistoryData: newResult }},{ "new": true, "upsert": true },
-                function(err, result1) {
-                if (err) console.log(err);
-                ;
-                // else res.send(result1);
-              });})
-                newResult.length=0;
-                });
+//                 CoinHistory.findOneAndUpdate({shortName:el},{ $set: { coinHistoryData: newResult }},{ "new": true, "upsert": true },
+//                 function(err, result1) {
+//                 if (err) console.log(err);
+//                 ;
+//                 // else res.send(result1);
+//               });})
+//                 newResult.length=0;
+//                 });
 
-            })
+//             })
 
-        },15000)
+//         },15000)
 
 
 
