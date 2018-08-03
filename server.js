@@ -75,7 +75,7 @@ app.get('/login', (req, res) => {
 });
 
 app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, '/dist/CryptoCurrencyWorld/index.html'));
+  res.sendFile(path.join(__dirname, 'src/index.html'));
 });
 
 
