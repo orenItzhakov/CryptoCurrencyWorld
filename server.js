@@ -19,17 +19,13 @@ const coinHistoryRoutes = require('./server/routes/coinHistoryApi');
 
 
 const app = express();
-const port = process.env.PORT || '3000';
 
-mongoose.connect(process.env.CONNECTION_STRING || 'mongodb://CCW:Aiagm100p@ds219181.mlab.com:19181/crypto_currency_world');
-app.use(express.static(path.join(__dirname, 'node_modules')));
+mongoose.connect('mongodb://CCW:Aiagm100p@ds219181.mlab.com:19181/crypto_currency_world');
+
 
 // Parsers for POST data
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
-
-// Point static path to dist
-app.use(express.static(path.join(__dirname, 'dist/CryptoCurrencyWorld')));
 
 app.use(passport.initialize());
 
@@ -62,8 +58,9 @@ app.post('/login', passport.authenticate('local', { session: false }), (req, res
   //res.sendFile(path.join(__dirname, '/dist/CryptoCurrencyWorld/index.html?token='+token+'&ID='+req.user));
 });
 
-
-
+// Point static path to dist
+app.use(express.static(path.join(__dirname, 'dist/CryptoCurrencyWorld')));
+app.use(express.static(path.join(__dirname, 'node_modules')));
 
 
 // Set our api routes
@@ -91,7 +88,7 @@ app.use(function (err, req, res, next) {
   res.status(500).send('Something broke!')
 })
 
-
+const port = process.env.PORT || '3000';
 app.set('port', port);
 
 /**
